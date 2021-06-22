@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="EUC-KR">
+<title>Insert title here</title>
+
+<title>Generic - Hyperspace by HTML5 UP</title>
+      <meta charset="utf-8" />
+      <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+      <link rel="stylesheet" href="assets/css/main.css" />
+      <noscript><link rel="stylesheet" href="assets/css/noscript.css" /></noscript>
+      
+      <style type="text/css">
+      #join_form {
+          display: inline-block;
+          text-align: center;
+          position: relative;
+        }
+      
+      .input_a{
+      	width: 30%;
+      }
+      
+      </style>
+</head>
+
+<body>
+
+<!-- Header -->
+         <header id="header">
+            <a href="testmain.jsp" class="title">Bonjour</a>
+            <nav>
+            
+            </nav>
+         </header>
+
+      <!-- Wrapper -->
+         <div id="wrapper">
+
+            <!-- Main -->
+               <section id="main" class="wrapper">
+                  <div class="inner" id="join_form">
+                     <h1 class="major" >JOIN</h1>
+                     <form action="JoinService" method="post">
+                     <table>
+                     <!-- name = "" : request.getParameter로 받을때 씀 !  -->
+                     <tr>
+                           <td>ID : <input id="input_id" name ="id" class="input_a" type="text"  placeholder="아이디를 입력하세요"></td>
+                           <td><input type="button" value="ID중복체크" calss="small_btn" onclick="idCheck()">
+                           <span id="sp"></span><br></td>
+                     </tr>
+                     
+                     <tr>
+                           <td>PW : </td>
+                           <td><input name="pw" type="password" id="password1" class="input_a" placeholder="비밀번호를 입력하세요"></td>
+                     </tr>
+                     
+                     <tr>
+                           <td>PW 확인 : </td>
+                           <td><input name="pw_check" type="password" id="password2" class="input_a" placeholder="비밀번호를 입력하세요">
+                           <input type="button" onclick="test()" value="비밀번호 확인"><span id="pw_check"></span></td>
+                           
+                     </tr>
+                     
+                     <tr>
+                           <td>주소 : </td>
+                           <td><input name="address" type="text" class="input_a" placeholder="주소를 입력하세요"></td>
+                     </tr>
+                     
+                     <tr>
+                           <td>전화번호 : </td>
+                           <td><input name="tel" type="text" class="input_a" placeholder="전화번호를 입력하세요"></td>
+                     </tr>
+                     
+                     <tr>
+                           <td colspan="2"><input type="submit" calss="small_btn" value="JoinUs"></td>
+                     </tr>
+                        
+                        </table>
+                        </form>
+                        
+                  </div>
+               </section>
+         </div>
+
+      
+      <!-- Scripts -->
+         <script src="assets/js/jquery.min.js"></script>
+         <script src="assets/js/jquery.scrollex.min.js"></script>
+         <script src="assets/js/jquery.scrolly.min.js"></script>
+         <script src="assets/js/browser.min.js"></script>
+         <script src="assets/js/breakpoints.min.js"></script>
+         <script src="assets/js/util.js"></script>
+         <script src="assets/js/main.js"></script>
+         
+         <script type="text/javascript">
+         function idCheck(){
+            var input = $('#input_id').val(); // input 창에 있는 값을 가져올때 -> .val()
+            $.ajax({
+               type : "post", // 데이터를 보내는 방식
+               data : {"id" : input}, // 서버로 보내는 데이터
+               url : "idCheckService", // 서버 파일 이름
+               dataType : "text", // 응답 데이터 형식
+               success : function(data){
+                  alert(data);
+                  // data = true (값이 있는 경우)
+                  // span(id = 'sp') -> '불가능한 id 입니다.'
+                  if(data=='true'){
+                     $('#sp').html('불가능한 아이디입니다.');
+                  }else{
+                     $('#sp').html('가능한 아이디입니다.');
+                  }
+                  // data = false (값이 없는 경우)
+                  // span -> '가능한 id입니다.'
+                  //js or jquery 사용
+               },
+               error : function(){
+                  alert("실패");
+               }
+            })
+         }
+         
+             function test() {
+               var p1 = document.getElementById('password1').value;
+               var p2 = document.getElementById('password2').value;
+               if( p1 != p2 ) {
+                 alert("비밀번호가 일치하지 않습니다");
+                 $('#pw_check').html("비밀번호가 일치하지 않습니다.");
+                 return false;
+               } else{
+                 alert("비밀번호가 일치합니다");
+                 $('#pw_check').html("비밀번호가 일치합니다.");
+                 return true;
+               }
+             }
+         
+         </script>
+
+</body>
+</html>

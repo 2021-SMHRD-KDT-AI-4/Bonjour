@@ -1,27 +1,26 @@
-<!DOCTYPE HTML>
-<!--
-	Hyperspace by HTML5 UP
-	html5up.net | @ajlkn
-	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
--->
+<%@ page language="java" contentType="text/html; charset=EUC-KR"
+    pageEncoding="EUC-KR"%>
+<!DOCTYPE html>
 <html>
-	<head>
+<head>
 		<title>Hyperspace by HTML5 UP</title>
 		<meta charset="utf-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
 		<link rel="stylesheet" href="assets/css/main.css" />
 		<noscript><link rel="stylesheet" href="assets/css/noscript.css" /></noscript>
-	</head>
-	<body class="is-preload">
+	
+</head>
+
+<body class="is-preload">
 
 		<!-- Sidebar -->
 			<section id="sidebar">
 				<div class="inner">
 					<nav>
 						<ul>
-							<li><a href="#intro">ë¡œê·¸ì¸/íšŒì›ê°€ì…</a></li>
-							<li><a href="#one">ì¤‘ê³ ì°¨ ê²€ìƒ‰</a></li>
-							<li><a href="#two">ë§ˆì´í˜ì´ì§€</a></li>
+							<li><a href="#intro">·Î±×ÀÎ/È¸¿ø°¡ÀÔ</a></li>
+							<li><a href="#one">Áß°íÂ÷ °Ë»ö</a></li>
+							<li><a href="#two">¸¶ÀÌÆäÀÌÁö</a></li>
 							<li><a href="#three">Get in touch</a></li>
 						</ul>
 					</nav>
@@ -35,10 +34,10 @@
 					<section id="intro" class="wrapper style1 fullscreen fade-up" style="background-image: url('images/car1.png')">
 						<div class="inner">
 							<h1>Pick your car !</h1>
-							<p>ë¨¸ì‹ ëŸ¬ë‹ ê¸°ë°˜ ì¤‘ê³ ì°¨ ê°€ê²© ì˜ˆì¸¡ ì„œë¹„ìŠ¤<br />
-							ë´‰ì£¼ë¥´</p>
+							<p>¸Ó½Å·¯´× ±â¹İ Áß°íÂ÷ °¡°İ ¿¹Ãø ¼­ºñ½º<br />
+							ºÀÁÖ¸£</p>
 							<ul class="actions">
-								<li><a href="#one" class="button scrolly">ì¤‘ê³ ì°¨ ê²€ìƒ‰</a></li>
+								<li><a href="#one" class="button scrolly">Áß°íÂ÷ °Ë»ö</a></li>
 							</ul>
 						</div>
 					</section>
@@ -49,7 +48,7 @@
 							<a href="#" class="image"></a>
 							<div class="content">
 								<div class="inner">
-									<h2>Sed ipsum dolor</h2>
+									<h2>°¡°İ ¿¹Ãø º¸±â</h2>
 									<p>Phasellus convallis elit id ullamcorper pulvinar. Duis aliquam turpis mauris, eu ultricies erat malesuada quis. Aliquam dapibus.</p>
 									<ul class="actions">
 										<li><a href="generic.html" class="button">Learn more</a></li>
@@ -61,7 +60,7 @@
 							<a href="#" class="image"><img src="images/pic02.jpg" alt="" data-position="top center" /></a>
 							<div class="content">
 								<div class="inner">
-									<h2>Feugiat consequat</h2>
+									<h2>My page</h2>
 									<p>Phasellus convallis elit id ullamcorper pulvinar. Duis aliquam turpis mauris, eu ultricies erat malesuada quis. Aliquam dapibus.</p>
 									<ul class="actions">
 										<li><a href="generic.html" class="button">Learn more</a></li>
@@ -73,7 +72,7 @@
 							<a href="#" class="image"><img src="images/pic03.jpg" alt="" data-position="25% 25%" /></a>
 							<div class="content">
 								<div class="inner">
-									<h2>Ultricies aliquam</h2>
+									<h2>aaa</h2>
 									<p>Phasellus convallis elit id ullamcorper pulvinar. Duis aliquam turpis mauris, eu ultricies erat malesuada quis. Aliquam dapibus.</p>
 									<ul class="actions">
 										<li><a href="generic.html" class="button">Learn more</a></li>

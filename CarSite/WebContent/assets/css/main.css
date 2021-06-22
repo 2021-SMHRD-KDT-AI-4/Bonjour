@@ -1,5 +1,7 @@
 @import url(fontawesome-all.min.css);
 
+
+
 /*
 	Hyperspace by HTML5 UP
 	html5up.net | @ajlkn
@@ -30,8 +32,12 @@ footer, header, hgroup, menu, nav, section {
 
 body {
 	line-height: 1;
+	
 }
 
+ #main{
+ 	background-color: #222222;
+ }
 ol, ul {
 	list-style: none;
 }
@@ -94,11 +100,11 @@ input, select, textarea {
 	}
 
 	*, *:before, *:after {
-		box-sizing: inherit;
+		box-sizing:  inherit;
 	}
 
 	body {
-		background: #312450;
+		background-color: #222222;
 	}
 
 		body.is-preload *, body.is-preload *:before, body.is-preload *:after {
@@ -115,13 +121,20 @@ input, select, textarea {
 /* Type */
 
 	body, input, select, textarea {
-		color: rgba(255, 255, 255, 0.55);
+		color: rgba(255, 255, 0, 0.55);
 		font-family: Arial, Helvetica, sans-serif;
 		font-size: 16.5pt;
 		font-weight: normal;
 		line-height: 1.75;
 	}
 
+	#tel{
+		color: rgba(255, 255, 255, 0.55);
+		font-family: Arial, Helvetica, sans-serif;
+		font-size: 16.5pt;
+		font-weight: normal;
+		line-height: 1.75;
+	}
 		@media screen and (max-width: 1680px) {
 
 			body, input, select, textarea {
@@ -172,10 +185,11 @@ input, select, textarea {
 
 	p {
 		margin: 0 0 2em 0;
+		color: #d0d0d0;
 	}
 
 	h1, h2, h3, h4, h5, h6 {
-		color: #ffffff;
+		color: #d0d0d0;
 		font-weight: bold;
 		line-height: 1.5;
 		margin: 0 0 0.5em 0;
@@ -194,6 +208,7 @@ input, select, textarea {
 			margin: 0 0 1.3em 0;
 			position: relative;
 			padding-bottom: 0.35em;
+			color: white;
 		}
 
 			h1.major:after {
@@ -1833,12 +1848,12 @@ input, select, textarea {
 		transition: border-color 0.2s ease;
 		background-color: transparent;
 		border: solid 1px !important;
-		border-color: rgba(255, 255, 255, 0.15) !important;
+		border-color: black;
 		border-radius: 3em;
 		color: #ffffff !important;
 		cursor: pointer;
 		display: inline-block;
-		font-size: 0.6em;
+		font-size: 0.8em;
 		font-weight: bold;
 		height: calc(4.75em + 2px);
 		letter-spacing: 0.25em;
@@ -1850,6 +1865,22 @@ input, select, textarea {
 		text-decoration: none;
 		text-transform: uppercase;
 		white-space: nowrap;
+	}
+	
+	div .small_btn {
+		background-color: transparent; /* 배경색이 없다는 뜻 */
+		border: solid 1.5px;
+		border-color: black;
+		border-radius: 40%;
+		color: #ffffff !important;
+		display: inline-block;
+		font-size: 0.5em;
+		font-weight: bold;
+		height: 1.5em !important;
+		letter-spacing: 0.25em;
+		line-height: 5px;
+		width : 1.5em;
+		
 	}
 
 		input[type="submit"]:after,
@@ -2281,15 +2312,15 @@ input, select, textarea {
 				}
 
 					form > .fields > .field.half {
-						width: calc(100% - 1.5em);
+						width: calc(50% - 1.5em);
 					}
 
 					form > .fields > .field.third {
-						width: calc(100% - 1.5em);
+						width: calc(100%/3 - 1.5em);
 					}
 
 					form > .fields > .field.quarter {
-						width: calc(100% - 1.5em);
+						width: calc(25% - 1.5em);
 					}
 
 		}
@@ -2318,11 +2349,12 @@ input, select, textarea {
 		border: none;
 		border: solid 1px rgba(255, 255, 255, 0.15);
 		color: inherit;
-		display: block;
+		display: inline-block;
 		outline: 0;
 		padding: 0 1em;
 		text-decoration: none;
-		width: 100%;
+		width: 17%;
+		align-content: center;
 	}
 
 		input[type="text"]:invalid,
@@ -2536,27 +2568,27 @@ input, select, textarea {
 			}
 
 				.wrapper.style1 .icon.major:before {
-					color: #5e42a6;
+					color: #222222;
 				}
 
 				.wrapper.style1-alt .icon.major:before {
-					color: #493382;
+					color: ##222222;
 				}
 
 				.wrapper.style2 .icon.major:before {
-					color: #5052b5;
+					color: ##222222;
 				}
 
 				.wrapper.style2-alt .icon.major:before {
-					color: #3e4094;
+					color: ##222222;
 				}
 
 				.wrapper.style3 .icon.major:before {
-					color: #b74e91;
+					color: ##222222;
 				}
 
 				.wrapper.style3-alt .icon.major:before {
-					color: #953d75;
+					color: ##222222;
 				}
 
 /* Image */
@@ -3138,10 +3170,12 @@ input, select, textarea {
 		overflow-x: auto;
 	}
 
-	table {
+	 table {
 		margin: 0 0 2em 0;
 		width: 100%;
+		color: #ffffff;
 	}
+
 
 		table tbody tr {
 			border: solid 1px rgba(255, 255, 255, 0.15);
@@ -3151,8 +3185,10 @@ input, select, textarea {
 
 			table tbody tr:nth-child(2n + 1) {
 				background-color: rgba(255, 255, 255, 0.05);
+				
 			}
 
+		
 		table td {
 			padding: 0.75em 0.75em;
 		}
@@ -3178,7 +3214,7 @@ input, select, textarea {
 		}
 
 			table.alt tbody tr td {
-				border: solid 1px rgba(255, 255, 255, 0.15);
+				border: solid 1px rgba(255, 255, 0, 0.15);
 				border-left-width: 0;
 				border-top-width: 0;
 			}
@@ -3215,6 +3251,8 @@ input, select, textarea {
 
 				.wrapper > .inner {
 					padding: 4em 4em 2em 4em ;
+					background-color: #222222;
+					
 				}
 
 			}
@@ -3240,19 +3278,19 @@ input, select, textarea {
 		}
 
 		.wrapper.style1 {
-			background-color: #5e42a6;
+			background-color: #222222;
 		}
 
 		.wrapper.style1-alt {
-			background-color: #493382;
+			background-color: #222222;
 		}
 
 		.wrapper.style2 {
-			background-color: #5052b5;
+			background-color: #222222;
 		}
 
 		.wrapper.style2-alt {
-			background-color: #3e4094;
+			background-color: #222222;
 		}
 
 		.wrapper.style3 {
@@ -3370,7 +3408,7 @@ input, select, textarea {
 		display: -webkit-flex;
 		display: -ms-flex;
 		display: flex;
-		background-color: #5e42a6;
+		background-color: #222222;
 		cursor: default;
 		padding: 1.75em 2em;
 	}
@@ -3874,10 +3912,11 @@ input, select, textarea {
 
 	#intro {
 		background-attachment: fixed;
-		background-image: url("images/car1.png") !important;
+		background-image: url("images/car1.png");
 		background-position: top right;
 		background-repeat: no-repeat;
-		background-size: 100% 100%;
+		background-size: 100%;
+		object-fit: cover;
 	}
 
 		#intro p {
@@ -3907,3 +3946,101 @@ input, select, textarea {
 			}
 
 		}
+		
+		.car_option{
+			display : inline-block !important;
+		}
+		
+		
+		
+		
+		#main article {
+         -moz-transform: translateY(0.25rem);
+         -webkit-transform: translateY(0.25rem);
+         -ms-transform: translateY(0.25rem);
+         transform: translateY(0.25rem);
+         -moz-transition: opacity 0.325s ease-in-out, -moz-transform 0.325s ease-in-out;
+         -webkit-transition: opacity 0.325s ease-in-out, -webkit-transform 0.325s ease-in-out;
+         -ms-transition: opacity 0.325s ease-in-out, -ms-transform 0.325s ease-in-out;
+         transition: opacity 0.325s ease-in-out, transform 0.325s ease-in-out;
+         padding: 4.5rem 2.5rem 1.5rem 2.5rem ;
+         position: relative;
+         width: 40rem;
+         max-width: 100%;
+         background-color: #222222;
+         border-radius: 4px;
+         opacity: 0;
+      }
+
+         #main article.active {
+            -moz-transform: translateY(0);
+            -webkit-transform: translateY(0);
+            -ms-transform: translateY(0);
+            transform: translateY(0);
+            opacity: 1;
+         }
+
+         #main article .close {
+            display: block;
+            position: absolute;
+            top: 0;
+            right: 0;
+            width: 4rem;
+            height: 4rem;
+            cursor: pointer;
+            text-indent: 4rem;
+            overflow: hidden;
+            white-space: nowrap;
+         }
+
+            #main article .close:before {
+               -moz-transition: background-color 0.2s ease-in-out;
+               -webkit-transition: background-color 0.2s ease-in-out;
+               -ms-transition: background-color 0.2s ease-in-out;
+               transition: background-color 0.2s ease-in-out;
+               content: '';
+               display: block;
+               position: absolute;
+               top: 0.75rem;
+               left: 0.75rem;
+               width: 2.5rem;
+               height: 2.5rem;
+               border-radius: 100%;
+               background-position: center;
+               /*  background-image: url("data:image/svg+xml;charset=utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink' width='20px' height='20px' viewBox='0 0 20 20' zoomAndPan='disable'%3E%3Cstyle%3Eline %7B stroke: %23ffffff%3B stroke-width: 1%3B %7D%3C/style%3E%3Cline x1='2' y1='2' x2='18' y2='18' /%3E%3Cline x1='18' y1='2' x2='2' y2='18' /%3E%3C/svg%3E");*/
+               background-size: 20px 20px;
+               background-repeat: no-repeat;
+            }
+
+            #main article .close:hover:before {
+               background-color: rgba(255, 255, 255, 0.075);
+            }
+
+            #main article .close:active:before {
+               background-color: rgba(255, 255, 255, 0.175);
+            }
+
+      @media screen and (max-width: 736px) {
+
+         #main article {
+            padding: 3.5rem 2rem 0.5rem 2rem ;
+         }
+
+            #main article .close:before {
+               top: 0.875rem;
+               left: 0.875rem;
+               width: 2.25rem;
+               height: 2.25rem;
+               background-size: 14px 14px;
+            }
+
+      }
+
+      @media screen and (max-width: 480px) {
+
+         #main article {
+            padding: 3rem 1.5rem 0.5rem 1.5rem ;
+         }
+
+      }
+		
