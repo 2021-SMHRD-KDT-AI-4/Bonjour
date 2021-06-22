@@ -1,5 +1,5 @@
-<%@ page language="java" contentType="text/html; charset=EUC-KR"
-    pageEncoding="EUC-KR"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -19,9 +19,9 @@
 				<div class="inner">
 					<nav>
 						<ul>
-							<li><a href="#menu">·Î±×ÀÎ/È¸¿ø°¡ÀÔ</a></li>
-							<li><a href="#one">Áß°íÂ÷ °Ë»ö</a></li>
-							<li><a href="#two">¸¶ÀÌÆäÀÌÁö</a></li>
+							<li><a href="#menu">ë¡œê·¸ì¸/íšŒì›ê°€ì…</a></li>
+							<li><a href="#one">ì¤‘ê³ ì°¨ ê²€ìƒ‰</a></li>
+							<li><a href="#two">ë§ˆì´í˜ì´ì§€</a></li>
 							<li><a href="#three">Get in touch</a></li>
 						</ul>
 					</nav>
@@ -35,8 +35,8 @@
 					<section id="intro" class="wrapper style1 fullscreen fade-up" style="background-image: url('images/car111.jpg')">
 						<div class="inner">
 							<h1>Pick your car !</h1>
-							<p>¸Ó½Å·¯´× ±â¹İ Áß°íÂ÷ °¡°İ ¿¹Ãø ¼­ºñ½º<br />
-							ºÀÁÖ¸£</p>
+							<p>ë¨¸ì‹ ëŸ¬ë‹ ê¸°ë°˜ ì¤‘ê³ ì°¨ ê°€ê²© ì˜ˆì¸¡ ì„œë¹„ìŠ¤<br />
+							ë´‰ì£¼ë¥´</p>
 							<ul class="actions">
 								<li><a href="#one" class="button scrolly">Join</a></li>
 							</ul>
@@ -49,11 +49,11 @@
 							<a href="#" class="image"></a>
 							<div class="content">
 								<div class="inner">
-									<h2>·Î±×ÀÎ/È¸¿ø°¡ÀÔ</h2>
+									<h2>ë¡œê·¸ì¸/íšŒì›ê°€ì…</h2>
 									<p>Phasellus convallis elit id ullamcorper pulvinar. Duis aliquam turpis mauris, eu ultricies erat malesuada quis. Aliquam dapibus.</p>
 									<ul class="actions">
-										<li><a href="join.html" class="button">È¸¿ø°¡ÀÔ</a></li>
-										<li><a href="login.html" class="button">·Î±×ÀÎ</a></li>
+										<li><a href="join.html" class="button">íšŒì›ê°€ì…</a></li>
+										<li><a href="login.html" class="button">ë¡œê·¸ì¸</a></li>
 									</ul>
 								</div>
 							</div>
@@ -62,10 +62,10 @@
 							<a href="#" class="image"><img src="images/pic02.jpg" alt="" data-position="top center" /></a>
 							<div class="content">
 								<div class="inner">
-									<h2>°¡°İ ¿¹Ãø º¸±â</h2>
+									<h2>ê°€ê²© ì˜ˆì¸¡ ë³´ê¸°</h2>
 									<p>Phasellus convallis elit id ullamcorper pulvinar. Duis aliquam turpis mauris, eu ultricies erat malesuada quis. Aliquam dapibus.</p>
 									<ul class="actions">
-										<li><a href="generic.html" class="button">°¡°İ ¿¹Ãø º¸±â</a></li>
+										<li><a href="carprice.jsp" class="button">ê°€ê²© ì˜ˆì¸¡ ë³´ê¸°</a></li>
 									</ul>
 								</div>
 							</div>
@@ -74,10 +74,10 @@
 							<a href="#" class="image"><img src="images/pic03.jpg" alt="" data-position="25% 25%" /></a>
 							<div class="content">
 								<div class="inner">
-									<h2>Â÷·® ¿ë¾î ¼³¸í</h2>
+									<h2>ì°¨ëŸ‰ ìš©ì–´ ì„¤ëª…</h2>
 									<p>Phasellus convallis elit id ullamcorper pulvinar. Duis aliquam turpis mauris, eu ultricies erat malesuada quis. Aliquam dapibus.</p>
 									<ul class="actions">
-										<li><a href="carinfo.jsp" class="button">Â÷·® ¿ë¾î ¼³¸í</a></li>
+										<li><a href="cardetail.jsp" class="button">ì°¨ëŸ‰ ìš©ì–´ ì„¤ëª…</a></li>
 									</ul>
 								</div>
 							</div>

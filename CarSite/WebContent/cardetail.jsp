@@ -1,3 +1,4 @@
+<%@page import="com.model.carinfoDTO"%>
 <%@page import="java.util.ArrayList"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
@@ -26,10 +27,10 @@
                   <div class="inner">
                      <h1 class="major">차량 용어 설명</h1>
                      
-                     <form action="" method="post" name="form">
+                     <form action="carDetailinfo" method="post" name="form">
                      
                      <select name="brand" id="brand" onchange="changes('m')">
-                        <option value="">-제조사-</option>
+                         <option value="">-제조사-</option>
                          <option value="기아">기아</option>
                          <option value="현대">현대</option>
                      </select>
@@ -51,11 +52,39 @@
                         <option value="">-연식-</option>
                      </select>
                      
-                     <input type="button" value="검색" calss="small_btn">
+                     <input type="submit" value="검색" calss="small_btn">
                      
                      </form>
                   </div>
                </section>
+               <%
+               		request.setCharacterEncoding("UTF-8");
+               		carinfoDTO info = (carinfoDTO)session.getAttribute("carinfo");
+               %>
+               <div class="inner">
+               <% if(info != null){ %>
+               	<table>
+               		<tr>
+               			<td>연료 : <%=info.getFe() %></td>
+               			<td>배기량 : <%=info.getCc() %></td>
+               			<td>최대 출력 : <%=info.getMaxoutput() %></td>
+               			<td>최대 토크 : <%=info.getMaxtorque() %></td>
+               		</tr>
+               		<tr>
+               			<td>구동방식 : <%=info.getDrivesystem() %></td>
+               			<td>승차인원 : <%=info.getPeople() %></td>
+               			<td>휠 : <%=info.getWheel() %></td>
+               			<td>타이어 : <%=info.getTire() %></td>	               			
+               		</tr>
+               		
+               	</table>
+               <% }else { %>
+               		<span> null</span>
+               <% } %>
+               
+               
+               </div>
+               
          </div>
 
 
@@ -97,7 +126,7 @@
                dataType : "json", //서버에서 오는 응답방식
                success : function(data){
                      console.log(data);               
-               //
+               
                if(v=='m'){
                   $('#model').children("option").remove();
                   $('#d_model').children("option").remove();
@@ -150,7 +179,7 @@
                
                }
             })
-            }
+       }
             
            
          
