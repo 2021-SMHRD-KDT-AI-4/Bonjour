@@ -152,4 +152,47 @@ public class carDAO {
       return year_list;
    }
    
+   public  carinfoDTO select_all(carinfoDTO dto) {
+	      carinfoDTO infodto = null;
+	      getConnection();      
+	      try {      
+	         String sql = "SELECT * FROM car_info where brand=? and model=? and d_model=? and grade=? and year=?";
+	         psmt = conn.prepareStatement(sql);
+	         psmt.setString(1, dto.getBrand());
+	         psmt.setString(2, dto.getModel());
+	         psmt.setString(3, dto.getD_model());
+	         psmt.setString(4, dto.getGrade());
+	         psmt.setString(5, dto.getYear());
+	         
+	         rs = psmt.executeQuery();
+	         
+	         while(rs.next()){
+	            String brand = rs.getString(2);
+	            String model = rs.getString(3);
+	            String d_model = rs.getString(4);
+	            String grade = rs.getString(5);
+	            String year = rs.getString(6);
+	            String price = rs.getString(7);
+	            String fe = rs.getString(8);
+	            String cc = rs.getString(9);
+	            String output = rs.getString(10);
+	            String torque = rs.getString(11);
+	            String drivesys = rs.getString(12);
+	            String people = rs.getString(13);
+	            String wheel = rs.getString(14);
+	            String tire = rs.getString(15);
+	            infodto = new carinfoDTO(brand, model, d_model, grade, year, price, fe, cc, output, torque, drivesys, people, wheel, tire);
+	           
+	         }
+	         
+	         
+	      }catch (SQLException e) {
+	         e.printStackTrace();
+	      }finally{
+	         close();
+	      }
+	      return infodto;
+	   }
+   
+   
 }

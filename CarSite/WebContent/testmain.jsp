@@ -1,6 +1,7 @@
 <%@page import="com.model.MemberDTO"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+   
 <!DOCTYPE html>
 <html>
 <head>
@@ -10,6 +11,14 @@
 		<link rel="stylesheet" href="assets/css/main.css" />
 		<noscript><link rel="stylesheet" href="assets/css/noscript.css" /></noscript>
 	
+<style>
+	 @import url('https://fonts.googleapis.com/css2?family=Noto+Serif+KR&display=swap');
+
+	*{
+		font-family: 'Noto Serif KR', serif !important;
+	}
+
+</style>
 	
 </head>
 
@@ -63,7 +72,6 @@
 									<h2>			</h2>
 									<ul class="actions">
 										<li><a href="join.html" class="button">회원가입</a></li>
-										
 										<% if(info == null){ %> <!-- 로그인 안했을 떄 -->
 										
 										<li><a href="login.html" class="button">로그인</a></li>

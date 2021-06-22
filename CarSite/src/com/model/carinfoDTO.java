@@ -37,6 +37,26 @@ public class carinfoDTO {
       this.wheel = wheel;
       this.tire = tire;
    }
+   public carinfoDTO(String brand, String model, String d_model, String grade, String year,
+	         String carprice, String fe, String cc, String maxoutput, String maxtorque, String drivesystem,
+	         String people, String wheel, String tire) {
+
+	      this.brand = brand;
+	      this.model = model;
+	      this.d_model = d_model;
+	      this.grade = grade;
+	      this.year = year;
+	      this.carprice = carprice;
+	      this.fe = fe;
+	      this.cc = cc;
+	      this.maxoutput = maxoutput;
+	      this.maxtorque = maxtorque;
+	      this.drivesystem = drivesystem;
+	      this.people = people;
+	      this.wheel = wheel;
+	      this.tire = tire;
+	   }
+   
 
    public carinfoDTO( String brand, String model, String d_model, String grade, String year) {
    

@@ -1,10 +1,8 @@
-<%@page import="java.util.ArrayList"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
 <head>
-<title>Insert title here</title>
 <meta charset="utf-8" />
       <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
       <link rel="stylesheet" href="assets/css/main.css" />
@@ -24,9 +22,9 @@
          <!-- Main -->
                <section id="main" class="wrapper">
                   <div class="inner">
-                     <h1 class="major">가격 예측</h1>
+                     <h1 class="major">차량 가격 예측</h1>
                      
-                     <form action="" method="post" name="form">
+                     <form action="pricePre" method="post" name="form">
                      
                      <select name="brand" id="brand" onchange="changes('m')">
                         <option value="">-제조사-</option>
@@ -57,7 +55,6 @@
                   </div>
                </section>
          </div>
-
 
 
 
@@ -151,12 +148,7 @@
                }
             })
             }
-            
            
-         
    </script>
-         
-
-
 </body>
 </html>
