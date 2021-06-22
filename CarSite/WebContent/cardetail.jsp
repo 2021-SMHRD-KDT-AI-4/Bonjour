@@ -24,7 +24,7 @@
          <!-- Main -->
                <section id="main" class="wrapper">
                   <div class="inner">
-                     <h1 class="major">차량 용어 설명</h1>
+                     <h1 class="major">차량 정보</h1>
                      
                      <form action="" method="post" name="form">
                      
@@ -151,12 +151,9 @@
                }
             })
             }
-            
            
          
    </script>
          
-
-
 </body>
 </html>
