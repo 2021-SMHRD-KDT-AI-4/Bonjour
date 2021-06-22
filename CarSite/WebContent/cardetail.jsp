@@ -56,7 +56,10 @@
                      
                      </form>
                   </div>
+               
                </section>
+               
+               <section class="wrapper style1 fade-up">
                <%
                		request.setCharacterEncoding("UTF-8");
                		carinfoDTO info = (carinfoDTO)session.getAttribute("carinfo");
@@ -79,13 +82,56 @@
                		
                	</table>
                <% }else { %>
-               		<span> null</span>
+               		<section>
+							<h1>차량 정보를 선택해 주세요</h1>
+					</section>
                <% } %>
                
-               
                </div>
+               </section>
                
-         </div>
+               <section class="wrapper style1 fade-up">
+               	 <div class="features">
+               		
+						<section>
+							<h3>배기량</h3>
+							<p>엔진 실런더 내부의 피스톤이 왕복하는 구간의 총 용량(엔진의 크기)</p>
+						</section>
+						<section>
+							<h3>최고출력</h3>
+							<p>엔진이 낼 수 있는 최대 에너지의 양</p>
+						</section>
+						<section>
+							<h3>최대토크 </h3>
+							<p>엔진의 폭발 과정에서 크랭크 축에 발생하는 회전력</p>
+						</section>
+						<section>
+							<h3>복합 연비 </h3>
+							<p>도심연비와 고속도로주행 연비에 각각 55%, 45%의 가중치를 적용해 산출된 연비로, 복합연비를 기준으로 자동차의 연비등급을 부여합니다. </p>
+						</section>
+						<section>
+							<h3>FF (Front engine - Front wheel drive)</h3>
+							<p>엔진과 동력전달장치가 차량 앞에 장착되어 있습니다.</p>
+						</section>
+						<section>
+							<h3>FR (Front engine - Rear wheel drive)</h3>
+							<p>엔진은 차량 앞에 장착되고, 후륜이 구동되는 방식을 말합니다.</p>
+						</section>
+						<section>
+							<h3>RR (Rear engine - Rear wheel drive)</h3>
+							<p>엔진이 차량 뒤쪽에 배치되고, 후륜이 구동되는 방식입니다.</p>
+						</section>
+						<section>
+							<h3>MR (Mid engine - Rear wheel drive)</h3>
+							<p>엔진이 차량 가운데 배치되고, 후륜이 구동되는 방식입니다</p>
+						</section>
+						
+						               		
+               		
+               	  </div>
+               </section>
+               
+           </div>
 
 
 
@@ -111,8 +157,6 @@
                 var d_model = $("#d_model").val();
                 var grade = $("#grade").val();
                 var year = $("#year").val();
-                          
-               alert(brand,model,d_model,grade,year);
                
                $.ajax({
                type : "POST",  // 데이터 전송 방식
