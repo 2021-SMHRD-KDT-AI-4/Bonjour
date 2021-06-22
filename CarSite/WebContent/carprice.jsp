@@ -1,3 +1,4 @@
+<%@page import="com.model.carinfoDTO"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -10,7 +11,23 @@
 
 </head>
 <body>
-
+ <%
+ 		request.setCharacterEncoding("UTF-8");
+ 		carinfoDTO info = (carinfoDTO)session.getAttribute("carinfo");
+ 		String price = " ";
+ 		if(info != null){
+ 			String brand = info.getBrand();
+ 			String model = info.getModel();
+ 			String d_model = info.getD_model();
+ 			String grade = info.getGrade();
+ 			String year = info.getYear();
+ 			
+ 			price = brand+" "+model+" "+d_model+" "+grade+" "+year+" 년식 : "+info.getCarprice()+" 원";
+ 		}else{
+ 			price = "차량을 선택해주세요";
+ 		}
+ 		
+ %>
 <!-- Header -->
          <header id="header">
             <a href="testmain.jsp" class="title">Bonjour</a>
@@ -22,8 +39,12 @@
          <!-- Main -->
                <section id="main" class="wrapper">
                   <div class="inner">
-                     <h1 class="major">차량 용어 설명</h1>
-                     
+                     <h1 class="major">차량 가격 예측 </h1>
+                     <h2 id="preprice" align="right"><%=price %></h2>
+                  </div>
+               </section>
+               <section class="wrapper">
+                     <div class="inner">
                      <form action="pricePre" method="post" name="form">
                      
                      <select name="brand" id="brand" onchange="changes('m')">
@@ -45,15 +66,36 @@
                         <option value="">-등급-</option>
                      </select>
                      
-                     <select name="year" id="year" onchange="changes()">연식
+                     <select name="year" id="year" onchange="changes('f')">연식
                         <option value="">-연식-</option>
                      </select>
                      
-                     <input type="button" value="검색" calss="small_btn">
+                     <input type="submit" value="검색" calss="small_btn">
                      
                      </form>
                   </div>
+               </section >
+               
+               <section class="wrapper style1 fade-up">
+               <div class="inner">
+               		<table>
+               			<tr>
+               				<td>사진</td>
+               				<td>내용</td>
+               				<td>url</td>
+               			</tr>
+               			
+               			<tr>
+               				<td>사진</td>
+               				<td>내용</td>
+               				<td>url</td>
+               			</tr>
+               		
+               		</table>
+               </div>
                </section>
+               
+               
          </div>
 
 
@@ -74,14 +116,14 @@
          
          <script type="text/javascript">
                 function changes(v) {
-                                
+                
+                
                 var brand = $("#brand").val();
                 var model = $("#model").val();
                 var d_model = $("#d_model").val();
                 var grade = $("#grade").val();
                 var year = $("#year").val();
-                          
-               alert(brand,model,d_model,grade,year);
+                
                
                $.ajax({
                type : "POST",  // 데이터 전송 방식
@@ -104,7 +146,8 @@
                   $('#model').html("<option value=''>-모델-</option>");
                   $('#d_model').html("<option value=''>-세부모델-</option>");
                   $('#grade').html("<option value=''>-등급--</option>");
-                        $('#year').html("<option value=''>-연식--</option>");
+                  $('#year').html("<option value=''>-연식--</option>");
+                  $("#preprice").text("선택(1/5)");
                   for ( var i in data.brand) {
                               var option = "<option value='" + data.brand[i].value + "'>" + data.brand[i].value + "</option>";
                               console.log(option);
@@ -117,7 +160,8 @@
                   $('#year').children("option").remove();
                   $('#d_model').html("<option value=''>-세부모델-</option>");
                   $('#grade').html("<option value=''>-등급--</option>");
-                        $('#year').html("<option value=''>-연식--</option>");
+                  $('#year').html("<option value=''>-연식--</option>");
+                  $("#preprice").text("선택(2/5)");
                   for ( var i in data.model) { 
                               var option = "<option value='" + data.model[i].value + "'>" + data.model[i].value + "</option>";
                               console.log(option);
@@ -127,7 +171,8 @@
                   $('#grade').children("option").remove();
                   $('#year').children("option").remove();
                   $('#grade').html("<option value=''>-등급--</option>");
-                        $('#year').html("<option value=''>-연식--</option>"); 
+                  $('#year').html("<option value=''>-연식--</option>");
+                  $("#preprice").text("선택(3/5)");
                         for ( var i in data.d_model) { 
                               var option = "<option value='" + data.d_model[i].value + "'>" + data.d_model[i].value + "</option>";
                               console.log(option);
@@ -136,11 +181,14 @@
                } else if (v=='y') {
                   $('#year').children("option").remove();
                   $('#year').html("<option value=''>-연식--</option>");
+                  $("#preprice").text("선택(4/5)");
                   for ( var i in data.grade) { 
                               var option = "<option value='" + data.grade[i].value + "'>" + data.grade[i].value + "</option>";
                               console.log(option);
                               $('#year').append(option);
                         }
+               }else if(v=='f'){
+            	   $("#preprice").text("선택(5/5)");
                }
                },
                error : function(){

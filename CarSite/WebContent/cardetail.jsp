@@ -93,7 +93,7 @@
                <section class="wrapper style1 fade-up">
                	 <div class="features">
                		
-						<section>
+						<section >
 							<h3>배기량</h3>
 							<p>엔진 실런더 내부의 피스톤이 왕복하는 구간의 총 용량(엔진의 크기)</p>
 						</section>
