@@ -14,6 +14,7 @@
  <%
  		request.setCharacterEncoding("UTF-8");
  		carinfoDTO info = (carinfoDTO)session.getAttribute("carinfo");
+ 		
  		String price = " ";
  		if(info != null){
  			String brand = info.getBrand();
@@ -21,8 +22,9 @@
  			String d_model = info.getD_model();
  			String grade = info.getGrade();
  			String year = info.getYear();
+ 			String pricePre = (String)session.getAttribute("pricepre"); 
  			
- 			price = brand+" "+model+" "+d_model+" "+grade+" "+year+" 년식 : "+info.getCarprice()+" 원";
+ 			price = brand+" "+model+" "+d_model+" "+grade+" "+year+" 년식 : "+pricePre+" 만원";
  		}else{
  			price = "차량을 선택해주세요";
  		}
@@ -45,7 +47,7 @@
                </section>
                <section class="wrapper">
                      <div class="inner">
-                     <form action="pricePre" method="post" name="form">
+                     <form action="http://localhost:9000/carpred" method="post" name="form">
                      
                      <select name="brand" id="brand" onchange="changes('m')">
                         <option value="">-제조사-</option>
@@ -69,8 +71,23 @@
                      <select name="year" id="year" onchange="changes('f')">연식
                         <option value="">-연식-</option>
                      </select>
+                     <hr>
+                     <input type="button" value="검색하기" calss="small_btn" onclick="serch_car()">
+                     <input type="submit" value="예측하기" calss="small_btn" >
                      
-                     <input type="submit" value="검색" calss="small_btn">
+                     <input type = "text" name ="color" id="color" value="e">
+                     <input type = "text" name ="car_type" id="car_type" value="e">
+                     <input type = "text" name ="gear" id="gear" value="e">
+                     <input type = "text" name ="fuel" id="fuel" value="e">
+                     <input type = "text" name ="fe" id="fe" value="e">
+                     <input type = "text" name ="cc" id="cc" value="e">
+                     <input type = "text" name ="output" id="output" value="e">
+                     <input type = "text" name ="torque" id="torque" value="e">
+                     <input type = "text" name ="drivesys" id="drivesys" value="e">
+                     <input type = "text" name ="people" id="people" value="e">
+                     <input type = "text" name ="wheel" id="wheel" value="e">
+                     <input type = "text" name ="tire" id="tire" value="e">
+                     
                      
                      </form>
                   </div>
@@ -115,6 +132,35 @@
          
          
          <script type="text/javascript">
+         		/* function sendurl(){
+         			var brand = $("#brand").val();
+                    var model = $("#model").val();
+                    var d_model = $("#d_model").val();
+                    var grade = $("#grade").val();
+                    var year = $("#year").val();
+                    
+                    $.ajax({
+                        type : "POST",  // 데이터 전송 방식
+                        data : {"brand" : brand,
+                              "model" : model,
+                              "d_model" : d_model,
+                              "grade" : grade,
+                              "year" : year}, // 서버로 보내는 값
+                        url : "http://localhost:9000/carpred",//서버 파일 이름
+                        //contentType : "application/json; charset : UTF-8",
+                        dataType : "json", //서버에서 오는 응답방식
+                        success : function(data){
+                              console.log(data);
+                    
+                    
+         		},
+                error : function(){
+                    alert("실패!");
+                 
+                 }
+              })
+              } */
+         
                 function changes(v) {
                 
                 
@@ -198,8 +244,49 @@
             })
             }
             
-           
+              function serch_car() {
+                  
+                  var brand = $("#brand").val();
+                  var model = $("#model").val();
+                  var d_model = $("#d_model").val();
+                  var grade = $("#grade").val();
+                  var year = $("#year").val();
          
+                  $.ajax({
+                      type : "POST",  // 데이터 전송 방식
+                      data : {"brand" : brand,
+                            "model" : model,
+                            "d_model" : d_model,
+                            "grade" : grade,
+                            "year" : year}, // 서버로 보내는 값
+                      url : "getModel2",//서버 파일 이름
+                      //contentType : "application/json; charset : UTF-8",
+                      dataType : "json", //서버에서 오는 응답방식
+                      success : function(data){
+                    	  console.log(data);
+                    	  alert(data.color[0].value)
+                    	  
+                    	  $("#color").val(data.color[0].value)
+                    	  $("#car_type").val(data.car_type[0].value)
+                    	  $("#gear").val(data.gear[0].value)
+                    	  $("#fuel").val(data.fuel[0].value)
+                    	  
+                    	  $("#fe").val(data.fe[0].value)
+                    	  $("#cc").val(data.cc[0].value)
+                    	  $("#output").val(data.output[0].value)
+                    	  $("#torque").val(data.torque[0].value)
+                    	  $("#people").val(data.people[0].value)
+                    	  $("#wheel").val(data.wheel[0].value)
+                    	  $("#tire").val(data.tire[0].value)
+                    	  $("#drivesys").val(data.drivesys[0].value)
+                    	  
+                    	  
+                    	  },
+                          error : function(){
+                        	  console.log("실패");
+                          }
+                      })
+              }
    </script>
          
 

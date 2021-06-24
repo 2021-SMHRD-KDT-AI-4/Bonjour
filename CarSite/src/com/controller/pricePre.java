@@ -10,6 +10,7 @@ import javax.servlet.http.HttpSession;
 
 import com.model.carDAO;
 import com.model.carinfoDTO;
+import com.model.carinfoDTO2;
 
 @WebServlet("/pricePre")
 public class pricePre extends HttpServlet {
@@ -18,6 +19,7 @@ public class pricePre extends HttpServlet {
 	protected void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 	
 		request.setCharacterEncoding("UTF-8");
+		System.out.println(request.getRequestURI().toString());
 		HttpSession session = request.getSession();
 		
 		String brand = request.getParameter("brand");
@@ -25,17 +27,25 @@ public class pricePre extends HttpServlet {
 		String d_model = request.getParameter("d_model");
 		String grade = request.getParameter("grade");
 		String year = request.getParameter("year");
+		String pre = null;
+		if (request.getParameter("pre") != null) {
+			 pre = request.getParameter("pre");
+		}
+		System.out.println(brand+"/"+ model+"/"+ d_model+"/"+ grade+"/"+ year +"/"+ pre);
 		carinfoDTO dto = new carinfoDTO(brand, model, d_model, grade, year);
+		
 		carDAO dao = new carDAO();
 		carinfoDTO carinfo = dao.select_all(dto);
 		
+		
 		if (carinfo != null) {
 			session.setAttribute("carinfo", carinfo);
+			session.setAttribute("pricepre", pre);
 			response.sendRedirect("carprice.jsp");
 		}else {
 			response.sendRedirect("carprice.jsp");
 		}
-		
+
 		
 	}
 
