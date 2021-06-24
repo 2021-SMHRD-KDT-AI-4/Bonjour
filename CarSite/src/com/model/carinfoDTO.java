@@ -16,7 +16,35 @@ public class carinfoDTO {
    private String people;
    private String wheel;
    private String tire;
-         
+   private String gear;
+   private String fuel;
+   private String url;
+   
+public carinfoDTO(String car_num, String brand, String model, String d_model, String grade, String year,
+		String carprice, String fe, String cc, String maxoutput, String maxtorque, String drivesystem, String people,
+		String wheel, String tire, String gear, String fuel, String url, String cartype) {
+	super();
+	this.car_num = car_num;
+	this.brand = brand;
+	this.model = model;
+	this.d_model = d_model;
+	this.grade = grade;
+	this.year = year;
+	this.carprice = carprice;
+	this.fe = fe;
+	this.cc = cc;
+	this.maxoutput = maxoutput;
+	this.maxtorque = maxtorque;
+	this.drivesystem = drivesystem;
+	this.people = people;
+	this.wheel = wheel;
+	this.tire = tire;
+	this.gear = gear;
+	this.fuel = fuel;
+	this.url = url;
+	this.cartype = cartype;
+}
+private String cartype;
    public carinfoDTO(String car_num, String brand, String model, String d_model, String grade, String year,
          String carprice, String fe, String cc, String maxoutput, String maxtorque, String drivesystem,
          String people, String wheel, String tire) {
@@ -159,4 +187,29 @@ public class carinfoDTO {
    public void setTire(String tire) {
       this.tire = tire;
    }
+public String getGear() {
+	return gear;
+}
+public void setGear(String gear) {
+	this.gear = gear;
+}
+public String getFuel() {
+	return fuel;
+}
+public void setFuel(String fuel) {
+	this.fuel = fuel;
+}
+public String getCartype() {
+	return cartype;
+}
+public void setCartype(String cartype) {
+	this.cartype = cartype;
+}
+public String getUrl() {
+	return url;
+}
+public void setUrl(String url) {
+	this.url = url;
+}
+   
 }
