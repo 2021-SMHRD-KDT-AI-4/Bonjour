@@ -42,7 +42,6 @@ public class getModel extends HttpServlet {
          ArrayList<String> list = new ArrayList<String>();
          String key = "";
          if (dto.getModel().equals("") && dto.getD_model().equals("") && dto.getGrade().equals("") && dto.getYear().equals("")) {
-        	 
             list = dao.selectModel(dto.getBrand());
             key = "brand";
             

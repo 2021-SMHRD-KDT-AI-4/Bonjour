@@ -47,4 +47,4 @@ commit
 
 SELECT * FROM car_info where brand='기아' and model='K7' and d_model='가솔린 2' and grade='스마트' and year='2016';
 
-SELECT DISTINCT MODEL FROM CAR_INFO where brand='기아';
+SELECT DISTINCT MODEL FROM CAR_INFO where brand='현대';

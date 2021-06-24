@@ -183,10 +183,11 @@ public class carDAO {
 	            String people = rs.getString(13);
 	            String wheel = rs.getString(14);
 	            String tire = rs.getString(15);
-	            infodto = new carinfoDTO(num,brand, model, d_model, grade, year, price, fe, cc, output, torque, drivesys, people, wheel, tire);	
-	            System.out.println(infodto.getGrade());
-	            System.out.println(rs.getString(12));
-	            System.err.println(infodto.getTire());
+	            String gear = rs.getString(16);
+	            String fuel = rs.getString(17);
+	            String cartype = rs.getString(18);
+	            String url = rs.getString(19);
+	            infodto = new carinfoDTO(num, brand, model, d_model, grade, year, price, fe, cc, output, torque, drivesys, people, wheel, tire, gear, fuel, url, cartype);
 	            
 	         }
 	         

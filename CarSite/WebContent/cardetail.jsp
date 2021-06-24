@@ -1,3 +1,4 @@
+<%@page import="java.net.URLEncoder"%>
 <%@page import="com.model.FavoriteDAO"%>
 <%@page import="com.model.MemberDTO"%>
 <%@page import="com.model.MemberDAO"%>
@@ -40,8 +41,12 @@
                      
                      <select name="brand" id="brand" onchange="changes('m')">
                          <option value="">-제조사-</option>
-                         <option value="기아">기아</option>
                          <option value="현대">현대</option>
+                         <option value="기아">기아</option>
+                         <option value="르노삼성">르노삼성</option>
+                         <option value="한국GM">한국GM</option>
+                         <option value="제네시스">제네시스</option>
+                         <option value="쌍용">쌍용</option>
                      </select>
                      
                      <select name="model" id="model" onchange="changes('d')">모델
@@ -88,6 +93,7 @@
                
                <div class="inner">
                <% if(info != null){ %>
+               	<img alt="제공되지 않는 이미지입니다." src="images/Car_img/<%= info.getUrl() %>">
                	<table>
                		<tr>
                			<td>연료 : <%=info.getFe() %></td>
