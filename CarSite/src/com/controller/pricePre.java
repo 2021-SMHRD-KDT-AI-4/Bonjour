@@ -10,6 +10,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import com.model.GoodsDAO;
+import com.model.JoinDTO;
 import com.model.carDAO;
 import com.model.carinfoDTO;
 import com.model.carinfoDTO2;
@@ -37,15 +39,22 @@ public class pricePre extends HttpServlet {
 		carinfoDTO dto = new carinfoDTO(brand, model, d_model, grade, year);
 		
 		carDAO dao = new carDAO();
-		ArrayList<carinfoDTO> carinfo = dao.select_all2(dto);
+		String car_num=dao.select_car_num(dto);
+		GoodsDAO goodsDAO = new GoodsDAO();
 		
+		ArrayList<JoinDTO> carinfo = goodsDAO.select_all3(car_num);
+//		carinfoDTO dto1 = new carinfoDTO(brand, model, d_model, grade, year);
+//		carDAO dao1 = new carDAO();
+//		System.out.println(11);
+//		carinfoDTO carinfo1 = dao.select_all(dto1);
 		
 		if (carinfo != null) {
-			session.setAttribute("carinfo", carinfo);
+			session.setAttribute("carinfo1", carinfo);
+//			session.setAttribute("carinfo", carinfo1);
 			session.setAttribute("pricepre", pre);
 			response.sendRedirect("carprice.jsp");
 		}else {
-			session.setAttribute("carinfo", carinfo);
+			session.setAttribute("carinfo1", carinfo);
 			response.sendRedirect("carprice.jsp");
 		}
 

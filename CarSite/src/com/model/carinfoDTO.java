@@ -16,15 +16,12 @@ public class carinfoDTO {
    private String people;
    private String wheel;
    private String tire;
-<<<<<<< HEAD
    private String url;
    private String oldprice;
    private String site;
          
-=======
    private String gear;
    private String fuel;
-   private String url;
    
 public carinfoDTO(String car_num, String brand, String model, String d_model, String grade, String year,
 		String carprice, String fe, String cc, String maxoutput, String maxtorque, String drivesystem, String people,
@@ -51,7 +48,6 @@ public carinfoDTO(String car_num, String brand, String model, String d_model, St
 	this.cartype = cartype;
 }
 private String cartype;
->>>>>>> branch 'master' of https://github.com/2021-SMHRD-KDT-AI-4/Bonjour.git
    public carinfoDTO(String car_num, String brand, String model, String d_model, String grade, String year,
          String carprice, String fe, String cc, String maxoutput, String maxtorque, String drivesystem,
          String people, String wheel, String tire) {
@@ -204,7 +200,6 @@ private String cartype;
    public void setTire(String tire) {
       this.tire = tire;
    }
-<<<<<<< HEAD
 	public String getUrl() {
 		return url;
 	}
@@ -225,7 +220,6 @@ private String cartype;
 	}
 	
 	
-=======
 public String getGear() {
 	return gear;
 }
@@ -244,12 +238,6 @@ public String getCartype() {
 public void setCartype(String cartype) {
 	this.cartype = cartype;
 }
-public String getUrl() {
-	return url;
-}
-public void setUrl(String url) {
-	this.url = url;
-}
->>>>>>> branch 'master' of https://github.com/2021-SMHRD-KDT-AI-4/Bonjour.git
-   
+
+
 }

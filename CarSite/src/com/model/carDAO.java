@@ -54,7 +54,7 @@ public class carDAO {
       getConnection();      
       try {      
     	  
-         String sql = "SELECT DISTINCT MODEL FROM CAR_INFO where brand=?";
+         String sql = "SELECT DISTINCT MODEL FROM CAR_INFO where brand=? ORDER BY MODEL";
          psmt = conn.prepareStatement(sql);
          psmt.setString(1, brand);         
          System.out.println("brand"+brand);
@@ -78,7 +78,7 @@ public class carDAO {
       ArrayList<String> d_model_list = new ArrayList<String>();
       getConnection();      
       try {      
-         String sql = "SELECT DISTINCT D_MODEL FROM car_info where brand=? and model=? ";
+         String sql = "SELECT DISTINCT D_MODEL FROM car_info where brand=? and model=? ORDER BY D_MODEL";
          psmt = conn.prepareStatement(sql);
          psmt.setString(1, brand);
          psmt.setString(2, model);
@@ -103,7 +103,7 @@ public class carDAO {
       ArrayList<String> grade_list = new ArrayList<String>();
       getConnection();      
       try {      
-         String sql = "SELECT DISTINCT GRADE FROM car_info where brand=? and model=? and d_model=? ";
+         String sql = "SELECT DISTINCT GRADE FROM car_info where brand=? and model=? and d_model=? ORDER BY GRADE";
          psmt = conn.prepareStatement(sql);
          psmt.setString(1, brand);
          psmt.setString(2, model);
@@ -128,7 +128,7 @@ public class carDAO {
       ArrayList<String> year_list = new ArrayList<String>();
       getConnection();      
       try {      
-         String sql = "SELECT DISTINCT YEAR FROM car_info where brand=? and model=? and d_model=? and grade=? ";
+         String sql = "SELECT DISTINCT YEAR FROM car_info where brand=? and model=? and d_model=? and grade=? ORDER BY YEAR";
          psmt = conn.prepareStatement(sql);
          psmt.setString(1, brand);
          psmt.setString(2, model);
@@ -188,7 +188,7 @@ public class carDAO {
 	            String cartype = rs.getString(18);
 	            String url = rs.getString(19);
 	            infodto = new carinfoDTO(num, brand, model, d_model, grade, year, price, fe, cc, output, torque, drivesys, people, wheel, tire, gear, fuel, url, cartype);
-	            
+	            System.out.println("!@#!@$");
 	         }
 	         
 	         
@@ -199,7 +199,30 @@ public class carDAO {
 	      }
 	      return infodto;
 	   }
-   
+   public  String select_car_num(carinfoDTO dto) {
+	      String num = null;
+	      getConnection();      
+	      try {      
+	         String sql = "SELECT car_num FROM car_info where brand=? and model=? and d_model=? and grade=?";
+	         psmt = conn.prepareStatement(sql);
+	         psmt.setString(1, dto.getBrand());
+	         psmt.setString(2, dto.getModel());
+	         psmt.setString(3, dto.getD_model());
+	         psmt.setString(4, dto.getGrade());
+	         rs = psmt.executeQuery();
+	         
+	        if(rs.next()){
+	        	num = rs.getString(1);	            
+	         }
+	         
+	         
+	      }catch (SQLException e) {
+	         e.printStackTrace();
+	      }finally{
+	         close();
+	      }
+	      return num;
+	   }
    public carinfoDTO2 select_all2(carinfoDTO2 dto) {
 	      carinfoDTO2 infodto = null;
 	      getConnection();      
@@ -229,9 +252,9 @@ public class carDAO {
 	            String people = rs.getString(13);
 	            String wheel = rs.getString(14);
 	            String tire = rs.getString(15);
-	            String car_type = rs.getString(16);
-	            String gear = rs.getString(17);
-	            String fuel = rs.getString(18);
+	            String gear = rs.getString(16);
+	            String fuel = rs.getString(17);
+	            String car_type = rs.getString(18);
 	            infodto = new carinfoDTO2(brand, model, d_model, grade, year, price, fe, cc, output, torque, drivesys, people, wheel, tire,car_type,gear,fuel);
 	           
 	         }
@@ -245,7 +268,7 @@ public class carDAO {
 	      return infodto;
 	   }
    
-   public ArrayList<carinfoDTO> select_all2(carinfoDTO dto) {
+   public ArrayList<carinfoDTO> select_all3(carinfoDTO dto) {
 	      carinfoDTO infodto = null ;
 	      ArrayList<carinfoDTO> goods_list = new ArrayList<carinfoDTO>();
 	      

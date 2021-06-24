@@ -36,7 +36,9 @@ INSERT INTO CAR_FAVORITE VALUES('1','1');
 
 DELETE FROM CAR_FAVORITE WHERE id='1' AND car_num='1';
 
-DELETE FROM CAR_INFO;
+DELETE FROM CAR_INFO cascade;
+
+rollback;
 
 INSERT INTO CAR_INFO VALUES('1','기아','G70(DH)','3.3 GDI','스페셜','2016','9810','10','3342','282','35','FR','5','18','1');
 INSERT INTO CAR_INFO VALUES('2','기아','올 뉴 K7','1.6 가솔린','트렌디','2016','5810','10','3342','282','35','FRFR','5','18','2');
@@ -48,3 +50,8 @@ commit
 SELECT * FROM car_info where brand='기아' and model='K7' and d_model='가솔린 2' and grade='스마트' and year='2016';
 
 SELECT DISTINCT MODEL FROM CAR_INFO where brand='현대';
+
+
+
+SELECT * FROM(SELECT car_num,brand,model,d_model,grade FROM CAR_INFO WHERE car_num='311') T1 INNER JOIN (SELECT * FROM CAR_GOODS WHERE car_num = '311') T2 ON (T1.car_num = T2.car_num);
+

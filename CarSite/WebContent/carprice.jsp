@@ -1,3 +1,4 @@
+<%@page import="com.model.JoinDTO"%>
 <%@page import="java.util.ArrayList"%>
 <%@page import="com.model.carinfoDTO"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
@@ -14,20 +15,23 @@
 <body>
  <%
  		request.setCharacterEncoding("UTF-8");
- 		ArrayList<carinfoDTO> info = (ArrayList<carinfoDTO>)session.getAttribute("carinfo");
- 		
- 		String price = "";
- 		String brand = "";
-		String model = "";
-		String d_model = "";
-		String grade = "";
-		String year = "";
-		String url = "";
-		String site ="";
-		int oldprice =0;
-		String pricePre="";
-		
-		String carinfo = "";
+ 		ArrayList<JoinDTO> info = (ArrayList<JoinDTO>)session.getAttribute("carinfo1");
+ 		//ArrayList<carinfoDTO> carinfo = (ArrayList<carinfoDTO>)session.getAttribute("carinfo");
+ 		String car_num;
+ 		String brand;
+ 		String model;
+ 		String d_model;
+ 		String grade;
+ 		String goods_num;
+ 		String year;
+ 		String km;
+ 		int price;
+ 		String fuel;
+ 		String site;
+ 		String url;
+		String pricePre = "";
+		String total;
+		String name;
  		if(info != null){
  			brand = info.get(0).getBrand();
  			model = info.get(0).getModel();
@@ -36,9 +40,9 @@
  			year = info.get(0).getYear();
  			
  			pricePre = (String)session.getAttribute("pricepre");  			
- 			price = brand+" "+model+" "+d_model+" "+grade+" "+year+" 년식 : "+pricePre+" 만원";
+ 			total = brand+" "+model+" "+d_model+" "+grade+" "+year+" 년식 : "+pricePre+" 만원";
  		}else{
- 			price = "차량을 선택해주세요";
+ 			total = "차량을 선택해주세요";
  		}
  		
  %>
@@ -55,7 +59,7 @@
                   <div class="inner">
                   
                      <h1 class="major">차량 가격 예측 </h1>
-                     <h2 id="preprice" align="right"><%=price %></h2>
+                     <h2 id="preprice" align="right"><%= total %></h2>
                   </div>
                </section>
                <section class="wrapper">
@@ -68,6 +72,11 @@
                         <option value="">-제조사-</option>
                          <option value="기아">기아</option>
                          <option value="현대">현대</option>
+                         <option value="르노삼성">르노삼성</option>
+                         <option value="한국GM">한국GM</option>
+                         <option value="제네시스">제네시스</option>
+                         <option value="쌍용">쌍용</option>
+                         
                      </select>
                      
                      <select name="model" id="model" onchange="changes('d')">모델
@@ -129,25 +138,27 @@
 	            	 			d_model = info.get(i).getD_model();
 	            	 			grade = info.get(i).getGrade();
 	            	 			year = info.get(i).getYear();
+	            	 			
 	            	 			url = info.get(i).getUrl();
 	            	 			site = info.get(i).getSite();
-	            	 			oldprice = Integer.parseInt(info.get(i).getOldprice());
-	            	 			carinfo = brand+" "+model+" "+d_model+" "+grade+" "+year;
+	            	 			price = Integer.parseInt(info.get(i).getPrice());
+	            	 			name = brand+" "+model+" "+d_model+" "+grade+" "+year;
 	            	 			
+	            	 			Integer.parseInt(pricePre);
 	            	 			
-	            	 			if(oldprice < Integer.parseInt(pricePre)*0.5 || oldprice > Integer.parseInt(pricePre)*1.5){
+	            	 			if(price < Integer.parseInt(pricePre)*0.5 || price > Integer.parseInt(pricePre)*1.5){
             	 		%>	
             	 		<tr>
-            	 			<td><%=carinfo %> </td>
-            	 			<td><%=oldprice %> 허위 매물 주의!!<td>
+            	 			<td><%=name %> </td>
+            	 			<td><%=price %> 허위 매물 주의!!<td>
                				<td><a href="<%=url %>"><%=site %></a></td>
                				
                			</tr>
             	 			
             	 		<%		}else{ %>
             	 		<tr>
-            	 			<td><%=carinfo %></td>
-            	 			<td><%=oldprice %><td>
+            	 			<td><%=name %></td>
+            	 			<td><%=price %><td>
                				<td><a href="<%=url %>"><%=site %></a></td>
                				
                			</tr>
