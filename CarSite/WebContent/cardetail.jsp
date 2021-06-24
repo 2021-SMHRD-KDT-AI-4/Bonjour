@@ -1,3 +1,6 @@
+<%@page import="com.model.FavoriteDAO"%>
+<%@page import="com.model.MemberDTO"%>
+<%@page import="com.model.MemberDAO"%>
 <%@page import="com.model.carinfoDTO"%>
 <%@page import="java.util.ArrayList"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
@@ -13,7 +16,13 @@
 
 </head>
 <body>
-
+<%
+               		request.setCharacterEncoding("UTF-8");
+               		carinfoDTO info = (carinfoDTO)session.getAttribute("carinfo");
+               		MemberDTO member = (MemberDTO)session.getAttribute("info"); 
+       
+               %>
+              
 <!-- Header -->
          <header id="header">
             <a href="testmain.jsp" class="title">Bonjour</a>
@@ -51,19 +60,32 @@
                      <select name="year" id="year" onchange="changes()">연식
                         <option value="">-연식-</option>
                      </select>
-                     
+                   
                      <input type="submit" value="검색" calss="small_btn">
                      
                      </form>
+                       <% 
+                     FavoriteDAO favoriteDAO = new FavoriteDAO();
+                     boolean ck = false;
+                     if(member != null & info != null){
+             		ck =favoriteDAO.select_car(member.getId(),info.getCar_num());
+                     }
+             		if(ck == true){
+             			%>
+             			<input type="button" value="찜하기해제" id="fav" onclick="favorite()">
+         				<%
+             		} else{
+             			%>
+             			<input type="button" value="찜하기" id="fav" onclick="favorite()">
+         				<%
+             		}
+                     %>
                   </div>
                
                </section>
                
                <section class="wrapper style1 fade-up">
-               <%
-               		request.setCharacterEncoding("UTF-8");
-               		carinfoDTO info = (carinfoDTO)session.getAttribute("carinfo");
-               %>
+               
                <div class="inner">
                <% if(info != null){ %>
                	<table>
@@ -223,13 +245,62 @@
                
                }
             })
-       }
-            
-           
+          }
+
+                
+         		function favorite() {
+         			var id =null;
+         			var car_num = null;
+                    <%
+               		request.setCharacterEncoding("UTF-8");
+               		carinfoDTO carinfo1 = (carinfoDTO)session.getAttribute("carinfo");
+               		MemberDTO member1 = (MemberDTO)session.getAttribute("info");
+               		
+               %>
+	               <% if(carinfo1 != null){%>
+	     			car_num =<%= carinfo1.getCar_num()  %>;
+	
+	          		<%} %>
+               		<% if(member1 != null){%>
+               		id =<%= member.getId()  %>;
+	
+               		<%} %>
+          			if($('#fav').val()=="찜하기"){
+          				$.ajax({
+          					type : "post",
+          					data : {
+          						"car_num" : car_num,
+          						"id" : id
+          					},
+          					url : "favoriteService",
+          					dataType : "text",
+          					success : function(data){
+          						$('#fav').val(data)
+          					},
+          					error : function(){
+          						alert("실패!");
+          					}
+          				})
+    			} else if($('#fav').val()=="찜하기해제"){
+    				$.ajax({
+      					type : "post",
+      					data : {
+      						"car_num" : car_num,
+      						"id" : id
+      					},
+      					url : "disFavoriteService",
+      					dataType : "text",
+      					success : function(data){
+      						$('#fav').val(data)
+      					},
+      					error : function(){
+      						alert("실패!");
+      					}
+      				})
+    			}
+          		}
          
    </script>
          
-
-
 </body>
 </html>

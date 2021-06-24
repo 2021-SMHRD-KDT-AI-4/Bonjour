@@ -63,7 +63,7 @@ public class carinfoDTO2 {
 	   }
    public carinfoDTO2(String brand, String model, String d_model, String grade, String year,
 	         String carprice, String fe, String cc, String maxoutput, String maxtorque, String drivesystem,
-	         String people, String wheel, String tire, String color,String car_type, String gear, String fuel) {
+	         String people, String wheel, String tire,String car_type, String gear, String fuel) {
 
 	      this.brand = brand;
 	      this.model = model;
@@ -79,7 +79,7 @@ public class carinfoDTO2 {
 	      this.people = people;
 	      this.wheel = wheel;
 	      this.tire = tire;
-	      this.color = color;
+	      
 	      this.car_type = car_type;
 	      this.gear = gear;
 	      this.fuel = fuel;

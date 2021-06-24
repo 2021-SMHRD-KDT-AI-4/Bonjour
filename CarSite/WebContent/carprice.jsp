@@ -1,3 +1,4 @@
+<%@page import="java.util.ArrayList"%>
 <%@page import="com.model.carinfoDTO"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
@@ -13,17 +14,28 @@
 <body>
  <%
  		request.setCharacterEncoding("UTF-8");
- 		carinfoDTO info = (carinfoDTO)session.getAttribute("carinfo");
+ 		ArrayList<carinfoDTO> info = (ArrayList<carinfoDTO>)session.getAttribute("carinfo");
  		
- 		String price = " ";
+ 		String price = "";
+ 		String brand = "";
+		String model = "";
+		String d_model = "";
+		String grade = "";
+		String year = "";
+		String url = "";
+		String site ="";
+		int oldprice =0;
+		String pricePre="";
+		
+		String carinfo = "";
  		if(info != null){
- 			String brand = info.getBrand();
- 			String model = info.getModel();
- 			String d_model = info.getD_model();
- 			String grade = info.getGrade();
- 			String year = info.getYear();
- 			String pricePre = (String)session.getAttribute("pricepre"); 
+ 			brand = info.get(0).getBrand();
+ 			model = info.get(0).getModel();
+ 			d_model = info.get(0).getD_model();
+ 			grade = info.get(0).getGrade();
+ 			year = info.get(0).getYear();
  			
+ 			pricePre = (String)session.getAttribute("pricepre");  			
  			price = brand+" "+model+" "+d_model+" "+grade+" "+year+" 년식 : "+pricePre+" 만원";
  		}else{
  			price = "차량을 선택해주세요";
@@ -41,13 +53,16 @@
          <!-- Main -->
                <section id="main" class="wrapper">
                   <div class="inner">
+                  
                      <h1 class="major">차량 가격 예측 </h1>
                      <h2 id="preprice" align="right"><%=price %></h2>
                   </div>
                </section>
                <section class="wrapper">
                      <div class="inner">
+
                      <form action="http://localhost:9000/carpred" method="post" name="form">
+
                      
                      <select name="brand" id="brand" onchange="changes('m')">
                         <option value="">-제조사-</option>
@@ -71,11 +86,20 @@
                      <select name="year" id="year" onchange="changes('f')">연식
                         <option value="">-연식-</option>
                      </select>
-                     <hr>
+                     <select name="color" id="color" ">색상
+                        <option value="">-색상-</option>
+                        <option value="흰색">흰색</option>
+                        <option value="검정색">검정색</option>
+                        <option value="회색">회색</option>
+                        <option value="은색">은색</option>
+                        <option value="진주색">진주색</option>
+                        <option value="기타">기타</option>
+                        
+                     </select>
+                     
                      <input type="button" value="검색하기" calss="small_btn" onclick="serch_car()">
                      <input type="submit" value="예측하기" calss="small_btn" >
-                     
-                     <input type = "text" name ="color" id="color" value="e">
+                     <hr>
                      <input type = "text" name ="car_type" id="car_type" value="e">
                      <input type = "text" name ="gear" id="gear" value="e">
                      <input type = "text" name ="fuel" id="fuel" value="e">
@@ -96,17 +120,48 @@
                <section class="wrapper style1 fade-up">
                <div class="inner">
                		<table>
-               			<tr>
-               				<td>사진</td>
-               				<td>내용</td>
-               				<td>url</td>
-               			</tr>
                			
-               			<tr>
-               				<td>사진</td>
-               				<td>내용</td>
-               				<td>url</td>
+               			<%
+               			if(info != null){
+	               			for(int i=0;i<info.size();i++){
+	            	 			brand = info.get(i).getBrand();
+	            	 			model = info.get(i).getModel();
+	            	 			d_model = info.get(i).getD_model();
+	            	 			grade = info.get(i).getGrade();
+	            	 			year = info.get(i).getYear();
+	            	 			url = info.get(i).getUrl();
+	            	 			site = info.get(i).getSite();
+	            	 			oldprice = Integer.parseInt(info.get(i).getOldprice());
+	            	 			carinfo = brand+" "+model+" "+d_model+" "+grade+" "+year;
+	            	 			
+	            	 			
+	            	 			if(oldprice < Integer.parseInt(pricePre)*0.5 || oldprice > Integer.parseInt(pricePre)*1.5){
+            	 		%>	
+            	 		<tr>
+            	 			<td><%=carinfo %> </td>
+            	 			<td><%=oldprice %> 허위 매물 주의!!<td>
+               				<td><a href="<%=url %>"><%=site %></a></td>
+               				
                			</tr>
+            	 			
+            	 		<%		}else{ %>
+            	 		<tr>
+            	 			<td><%=carinfo %></td>
+            	 			<td><%=oldprice %><td>
+               				<td><a href="<%=url %>"><%=site %></a></td>
+               				
+               			</tr>
+            	 			
+            	 			
+            	 		<%}
+	            	 		}
+               			}else{ %>
+               			<tr>
+            	 			<td></td>
+            	 			<td></td>
+               				<td></td>
+               			</tr>
+               			<% } %>
                		
                		</table>
                </div>
@@ -114,7 +169,6 @@
                
                
          </div>
-
 
 
 
@@ -243,6 +297,7 @@
                }
             })
             }
+
             
               function serch_car() {
                   
@@ -264,21 +319,21 @@
                       dataType : "json", //서버에서 오는 응답방식
                       success : function(data){
                     	  console.log(data);
-                    	  alert(data.color[0].value)
                     	  
-                    	  $("#color").val(data.color[0].value)
-                    	  $("#car_type").val(data.car_type[0].value)
-                    	  $("#gear").val(data.gear[0].value)
-                    	  $("#fuel").val(data.fuel[0].value)
                     	  
-                    	  $("#fe").val(data.fe[0].value)
-                    	  $("#cc").val(data.cc[0].value)
-                    	  $("#output").val(data.output[0].value)
-                    	  $("#torque").val(data.torque[0].value)
-                    	  $("#people").val(data.people[0].value)
+                    	  //$("#color").val(data.color[0].value);
+                    	  $("#car_type").val(data.car_type[0].value);
+                    	  $("#gear").val(data.gear[0].value);
+                    	  $("#fuel").val(data.fuel[0].value);
+                    	  
+                    	  $("#fe").val(data.fe[0].value);
+                    	  $("#cc").val(data.cc[0].value);
+                    	  $("#output").val(data.output[0].value);
+                    	  $("#torque").val(data.torque[0].value);
+                    	  $("#people").val(data.people[0].value);
                     	  $("#wheel").val(data.wheel[0].value)
-                    	  $("#tire").val(data.tire[0].value)
-                    	  $("#drivesys").val(data.drivesys[0].value)
+                    	  $("#tire").val(data.tire[0].value);
+                    	  $("#drivesys").val(data.drivesys[0].value);
                     	  
                     	  
                     	  },
@@ -287,9 +342,7 @@
                           }
                       })
               }
+
    </script>
-         
-
-
 </body>
 </html>

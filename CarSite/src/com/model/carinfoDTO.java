@@ -16,6 +16,9 @@ public class carinfoDTO {
    private String people;
    private String wheel;
    private String tire;
+   private String url;
+   private String oldprice;
+   private String site;
          
    public carinfoDTO(String car_num, String brand, String model, String d_model, String grade, String year,
          String carprice, String fe, String cc, String maxoutput, String maxtorque, String drivesystem,
@@ -67,7 +70,17 @@ public class carinfoDTO {
       this.year = year;
       
    }
-
+   public carinfoDTO( String brand, String model, String d_model, String grade, String year,String url,String oldprice, String site) {
+	   
+	      this.brand = brand;
+	      this.model = model;
+	      this.d_model = d_model;
+	      this.grade = grade;
+	      this.year = year;
+	      this.url = url;
+	      this.oldprice = oldprice;
+	      this.site = site;
+	   }
    
    public String getCar_num() {
       return car_num;
@@ -159,4 +172,25 @@ public class carinfoDTO {
    public void setTire(String tire) {
       this.tire = tire;
    }
+	public String getUrl() {
+		return url;
+	}
+	public void setUrl(String url) {
+		this.url = url;
+	}
+	public String getOldprice() {
+		return oldprice;
+	}
+	public void setOldprice(String oldprice) {
+		this.oldprice = oldprice;
+	}
+	public String getSite() {
+		return site;
+	}
+	public void setSite(String site) {
+		this.site = site;
+	}
+	
+	
+   
 }

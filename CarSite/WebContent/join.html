@@ -17,11 +17,25 @@
           position: relative;
         }
       
-      .input_a{
-      	width: 30%;
+       .input_a{
+      	width: 50%;
       }
       
-      </style>
+      .wrapper{
+      	margin-left: 150px;
+      	margin-right: 150px; 
+      }
+      
+     
+	 @import url('https://fonts.googleapis.com/css2?family=Noto+Serif+KR&display=swap');
+
+	*{
+		font-family: 'Noto Serif KR', serif !important;
+	}
+
+</style>
+      
+   
 </head>
 
 <body>
@@ -42,38 +56,43 @@
                   <div class="inner" id="join_form">
                      <h1 class="major" >JOIN</h1>
                      <form action="JoinService" method="post">
+                     
                      <table>
                      <!-- name = "" : request.getParameter로 받을때 씀 !  -->
                      <tr>
-                           <td>ID : <input id="input_id" name ="id" class="input_a" type="text"  placeholder="아이디를 입력하세요"></td>
+                           <td>ID : </td>
+                           <td><input id="input_id" name ="id" class="input_a" type="text"  placeholder="아이디를 입력하세요"></td>
                            <td><input type="button" value="ID중복체크" calss="small_btn" onclick="idCheck()">
                            <span id="sp"></span><br></td>
                      </tr>
                      
                      <tr>
                            <td>PW : </td>
-                           <td><input name="pw" type="password" id="password1" class="input_a" placeholder="비밀번호를 입력하세요"></td>
+                           <td ><input name="pw" type="password" id="password1" class="input_a" placeholder="비밀번호를 입력하세요"></td>
+                           <td></td>
                      </tr>
                      
                      <tr>
                            <td>PW 확인 : </td>
-                           <td><input name="pw_check" type="password" id="password2" class="input_a" placeholder="비밀번호를 입력하세요">
-                           <input type="button" onclick="test()" value="비밀번호 확인"><span id="pw_check"></span></td>
+                           <td><input name="pw_check" type="password" id="password2" class="input_a" placeholder="비밀번호를 입력하세요"></td>
+                           <td><input type="button" onclick="test()" value="비밀번호 확인"><span id="pw_check"></span></td>
                            
                      </tr>
                      
                      <tr>
                            <td>주소 : </td>
-                           <td><input name="address" type="text" class="input_a" placeholder="주소를 입력하세요"></td>
+                           <td ><input name="address" type="text" class="input_a" placeholder="주소를 입력하세요"></td>
+                           <td></td>
                      </tr>
                      
                      <tr>
                            <td>전화번호 : </td>
-                           <td><input name="tel" type="text" class="input_a" placeholder="전화번호를 입력하세요"></td>
+                           <td ><input name="tel" type="text" class="input_a" placeholder="전화번호를 입력하세요"></td>
+                           <td></td>
                      </tr>
                      
-                     <tr>
-                           <td colspan="2"><input type="submit" calss="small_btn" value="JoinUs"></td>
+                     <tr align="center">
+                           <td colspan="3"><input type="submit" calss="small_btn" value="Join Us"></td>
                      </tr>
                         
                         </table>

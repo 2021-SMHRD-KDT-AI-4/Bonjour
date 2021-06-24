@@ -45,8 +45,6 @@ public class getModel2 extends HttpServlet {
 
          result.append("{");
          
-         result.append("\"color\":[");
-         result.append("{\"value\" : \""+dto2.getColor()+"\"}],");
          result.append("\"car_type\":[");
          result.append("{\"value\" : \""+dto2.getCar_type()+"\"}],");
          result.append("\"gear\":[");

@@ -6,6 +6,8 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
+import com.model.MemberDTO;
+
 public class MemberDAO {
 	
 	private Connection conn;
@@ -136,5 +138,33 @@ public class MemberDAO {
 			
 		}
 
+		public int logout(MemberDTO dto) {
+
+			int cnt = 0;
+
+			try {
+				getConnection();
+
+				String sql = "delete from CAR_MEMBER where id=? and pw=?";
+				psmt = conn.prepareStatement(sql);
+				psmt.setString(1, dto.getId());
+				psmt.setString(2, dto.getPw());
+
+				cnt = psmt.executeUpdate();
+
+				if (cnt > 0) {
+					System.out.println("로그아웃 성공 !");
+				} else {
+					System.out.println("로그아웃 실패!");
+				}
+
+			} catch (Exception e) {
+				e.printStackTrace();
+			} finally {
+
+				close();
+			}
+			return cnt;
+		}
 
 }

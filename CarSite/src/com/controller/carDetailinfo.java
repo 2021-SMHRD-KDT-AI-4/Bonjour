@@ -23,6 +23,8 @@ public class carDetailinfo extends HttpServlet {
 		HttpSession session = request.getSession();
 		
 		String brand = request.getParameter("brand");
+		System.out.println("ºê·£µå :"+brand);
+		
 		String model = request.getParameter("model");
 		String d_model = request.getParameter("d_model");
 		String grade = request.getParameter("grade");
@@ -30,7 +32,6 @@ public class carDetailinfo extends HttpServlet {
 		carinfoDTO dto = new carinfoDTO(brand, model, d_model, grade, year);
 		carDAO dao = new carDAO();
 		carinfoDTO carinfo = dao.select_all(dto);
-		
 		if (carinfo != null) {
 			session.setAttribute("carinfo", carinfo);
 			response.sendRedirect("cardetail.jsp");

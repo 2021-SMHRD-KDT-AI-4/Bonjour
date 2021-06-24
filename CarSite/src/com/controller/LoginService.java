@@ -18,7 +18,7 @@ public class LoginService extends HttpServlet {
 
 	protected void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 	
-		request.setCharacterEncoding("EUC-KR");
+		request.setCharacterEncoding("UTF-8");
 		String id = request.getParameter("id");
 		String pw = request.getParameter("pw");
 		
@@ -33,13 +33,13 @@ public class LoginService extends HttpServlet {
 			// 세션의 생명주기 넣기
 			session.setMaxInactiveInterval(500);
 			session.setAttribute("info",info);
+			System.out.println("로그인 성공 ");
 			response.sendRedirect("testmain.jsp");
 		} else {
+			System.out.println("로그인 실패");
 			response.sendRedirect("login.html");
 		}
 
-	
-	
 	}
 
 }

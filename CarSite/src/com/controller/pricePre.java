@@ -1,6 +1,8 @@
 package com.controller;
 
 import java.io.IOException;
+import java.util.ArrayList;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -35,7 +37,7 @@ public class pricePre extends HttpServlet {
 		carinfoDTO dto = new carinfoDTO(brand, model, d_model, grade, year);
 		
 		carDAO dao = new carDAO();
-		carinfoDTO carinfo = dao.select_all(dto);
+		ArrayList<carinfoDTO> carinfo = dao.select_all2(dto);
 		
 		
 		if (carinfo != null) {
@@ -43,6 +45,7 @@ public class pricePre extends HttpServlet {
 			session.setAttribute("pricepre", pre);
 			response.sendRedirect("carprice.jsp");
 		}else {
+			session.setAttribute("carinfo", carinfo);
 			response.sendRedirect("carprice.jsp");
 		}
 

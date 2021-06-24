@@ -53,18 +53,18 @@ public class carDAO {
       ArrayList<String> model_list = new ArrayList<String>();
       getConnection();      
       try {      
-         String sql = "SELECT DISTINCT MODEL FROM car_info where brand=? ";
+    	  
+         String sql = "SELECT DISTINCT MODEL FROM CAR_INFO where brand=?";
          psmt = conn.prepareStatement(sql);
          psmt.setString(1, brand);         
-         
+         System.out.println("brand"+brand);
          rs = psmt.executeQuery();
-         
          while(rs.next()){
             String model = rs.getString(1);
             model_list.add(model);
-            System.out.println(model);
+            System.out.println(model+"¸ðµ¨");
          }
-         
+       
          
       }catch (SQLException e) {
          e.printStackTrace();
@@ -152,8 +152,10 @@ public class carDAO {
       return year_list;
    }
    
-   public carinfoDTO select_all(carinfoDTO dto) {
-	      carinfoDTO infodto = null;
+
+   public  carinfoDTO select_all(carinfoDTO dto) {
+	      carinfoDTO infodto = null ;
+
 	      getConnection();      
 	      try {      
 	         String sql = "SELECT * FROM car_info where brand=? and model=? and d_model=? and grade=? and year=?";
@@ -163,10 +165,10 @@ public class carDAO {
 	         psmt.setString(3, dto.getD_model());
 	         psmt.setString(4, dto.getGrade());
 	         psmt.setString(5, dto.getYear());
-	         
 	         rs = psmt.executeQuery();
 	         
-	         while(rs.next()){
+	        if(rs.next()){
+	        	String num = rs.getString(1);
 	            String brand = rs.getString(2);
 	            String model = rs.getString(3);
 	            String d_model = rs.getString(4);
@@ -181,8 +183,11 @@ public class carDAO {
 	            String people = rs.getString(13);
 	            String wheel = rs.getString(14);
 	            String tire = rs.getString(15);
-	            infodto = new carinfoDTO(brand, model, d_model, grade, year, price, fe, cc, output, torque, drivesys, people, wheel, tire);
-	           
+	            infodto = new carinfoDTO(num,brand, model, d_model, grade, year, price, fe, cc, output, torque, drivesys, people, wheel, tire);	
+	            System.out.println(infodto.getGrade());
+	            System.out.println(rs.getString(12));
+	            System.err.println(infodto.getTire());
+	            
 	         }
 	         
 	         
@@ -223,11 +228,10 @@ public class carDAO {
 	            String people = rs.getString(13);
 	            String wheel = rs.getString(14);
 	            String tire = rs.getString(15);
-	            String color = rs.getString(16);
-	            String car_type = rs.getString(17);
-	            String gear = rs.getString(18);
-	            String fuel = rs.getString(19);
-	            infodto = new carinfoDTO2(brand, model, d_model, grade, year, price, fe, cc, output, torque, drivesys, people, wheel, tire,color,car_type,gear,fuel);
+	            String car_type = rs.getString(16);
+	            String gear = rs.getString(17);
+	            String fuel = rs.getString(18);
+	            infodto = new carinfoDTO2(brand, model, d_model, grade, year, price, fe, cc, output, torque, drivesys, people, wheel, tire,car_type,gear,fuel);
 	           
 	         }
 	         
@@ -240,5 +244,42 @@ public class carDAO {
 	      return infodto;
 	   }
    
+   public ArrayList<carinfoDTO> select_all2(carinfoDTO dto) {
+	      carinfoDTO infodto = null ;
+	      ArrayList<carinfoDTO> goods_list = new ArrayList<carinfoDTO>();
+	      
+	      getConnection();      
+	      try {      
+	         String sql = "SELECT * FROM car_info2 where brand=? and model=? and d_model=? and grade=? and year=?";
+	         psmt = conn.prepareStatement(sql);
+	         psmt.setString(1, dto.getBrand());
+	         psmt.setString(2, dto.getModel());
+	         psmt.setString(3, dto.getD_model());
+	         psmt.setString(4, dto.getGrade());
+	         psmt.setString(5, dto.getYear());
+	         rs = psmt.executeQuery();
+	         
+	         
+	      while(rs.next()){
+            String brand = rs.getString(2);
+            String model = rs.getString(3);
+            String d_model = rs.getString(4);
+            String grade = rs.getString(5);
+            String year = rs.getString(6);
+            String url = rs.getString(7);
+            String oldprice = rs.getString(8);
+            String site = rs.getString(9);
+            infodto = new carinfoDTO(brand, model, d_model, grade, year, url,oldprice,site);
+            goods_list.add(infodto);
+	         }
+	         
+	         
+	      }catch (SQLException e) {
+	         e.printStackTrace();
+	      }finally{
+	         close();
+	      }
+	      return goods_list;
+	   } 
    
 }

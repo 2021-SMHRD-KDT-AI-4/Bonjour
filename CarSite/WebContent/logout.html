@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="EUC-KR">
+<meta charset="UTF-8">
 <title>Insert title here</title>
 
 <title>Generic - Hyperspace by HTML5 UP</title>
@@ -9,52 +9,22 @@
       <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
       <link rel="stylesheet" href="assets/css/main.css" />
       <noscript><link rel="stylesheet" href="assets/css/noscript.css" /></noscript>
-      
-      <style type="text/css">
-      #login_form {
-          display: inline-block;
-          text-align: center;
-          position: relative;
-        }
-        
-       #wrapper{
-       	position: relative;
-       	
-       }
-      
-      span{
-      	color: white;
-      }
-      
-      .input_a{
-      	width: 30%;
-      }
-      
-      input{
-      	margin: 10px;
-      }
-      
-       .wrapper{
-      	margin-left: 350px;
-      	margin-right: 350px; 
-      }
-      
-      
-       @import url('https://fonts.googleapis.com/css2?family=Noto+Serif+KR&display=swap');
+</head>
+
+<style>
+	 @import url('https://fonts.googleapis.com/css2?family=Noto+Serif+KR&display=swap');
 
 	*{
 		font-family: 'Noto Serif KR', serif !important;
 	}
-      </style>
-</head>
+
+</style>
 
 <body>
-
 <!-- Header -->
 			<header id="header">
 				<a href="testmain.jsp" class="title">Bonjour</a>
 				<nav>
-				
 				</nav>
 			</header>
 
@@ -63,17 +33,25 @@
 
 				<!-- Main -->
 					<section id="main" class="wrapper">
-						<div class="inner" id="login_form">
-							<h1 class="major" >LOGIN</h1>
-							
-							<form action="LoginService" method="post">
-							<!-- name = "" : request.getParameter∑Œ πﬁ¿ª∂ß æ∏ !  -->
-									<span>I D : </span><input  id="input_id" name ="id" class="input_a" type="text"  placeholder="æ∆¿Ãµ∏¶ ¿‘∑¬«œººø‰"><br>
+						<div>
+						<h1>ÌöåÏõêÌÉàÌá¥</h1>
+						<form action="OutService" method = "post">
+							<table>
+								<tr>
+									<td>ID</td>
+									<td><input type="text" name="id"></td>
+								</tr>
 								
-									<span>PW : </span><input  name="pw" type="password" class="input_a" placeholder="∫Òπ–π¯»£∏¶ ¿‘∑¬«œººø‰"><br>
+								<tr>
+									<td>PW</td>
+									<td><input type="password" name="pw"></td>
+								</tr>
 								
-									<input type="submit" calss="small_btn" value="Login">
-							</form>
+								<tr>
+									<td colspan="2"><input type="submit" value ="ÌÉàÌá¥ÌïòÍ∏∞"></td>
+								</tr>
+							</table>
+						</form>
 						</div>
 					</section>
 			</div>
