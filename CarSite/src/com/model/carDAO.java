@@ -53,18 +53,18 @@ public class carDAO {
       ArrayList<String> model_list = new ArrayList<String>();
       getConnection();      
       try {      
-         String sql = "SELECT DISTINCT MODEL FROM car_info where brand=? ";
+    	  
+         String sql = "SELECT DISTINCT MODEL FROM CAR_INFO where brand='±â¾Æ'";
          psmt = conn.prepareStatement(sql);
-         psmt.setString(1, brand);         
-         
+//         psmt.setString(1, brand);         
+         System.out.println("brand"+brand);
          rs = psmt.executeQuery();
-         
          while(rs.next()){
             String model = rs.getString(1);
             model_list.add(model);
-            System.out.println(model);
+            System.out.println(model+"¸ðµ¨");
          }
-         
+       
          
       }catch (SQLException e) {
          e.printStackTrace();
@@ -153,7 +153,7 @@ public class carDAO {
    }
    
    public  carinfoDTO select_all(carinfoDTO dto) {
-	      carinfoDTO infodto = null;
+	      carinfoDTO infodto = null ;
 	      getConnection();      
 	      try {      
 	         String sql = "SELECT * FROM car_info where brand=? and model=? and d_model=? and grade=? and year=?";
@@ -163,10 +163,10 @@ public class carDAO {
 	         psmt.setString(3, dto.getD_model());
 	         psmt.setString(4, dto.getGrade());
 	         psmt.setString(5, dto.getYear());
-	         
 	         rs = psmt.executeQuery();
 	         
-	         while(rs.next()){
+	        if(rs.next()){
+	        	String num = rs.getString(1);
 	            String brand = rs.getString(2);
 	            String model = rs.getString(3);
 	            String d_model = rs.getString(4);
@@ -181,8 +181,11 @@ public class carDAO {
 	            String people = rs.getString(13);
 	            String wheel = rs.getString(14);
 	            String tire = rs.getString(15);
-	            infodto = new carinfoDTO(brand, model, d_model, grade, year, price, fe, cc, output, torque, drivesys, people, wheel, tire);
-	           
+	            infodto = new carinfoDTO(num,brand, model, d_model, grade, year, price, fe, cc, output, torque, drivesys, people, wheel, tire);	
+	            System.out.println(infodto.getGrade());
+	            System.out.println(rs.getString(12));
+	            System.err.println(infodto.getTire());
+	            
 	         }
 	         
 	         

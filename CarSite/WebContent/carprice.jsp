@@ -130,7 +130,7 @@
                 
                
                $.ajax({
-               type : "POST",  // 데이터 전송 방식
+               type : "GET",  // 데이터 전송 방식
                data : {"brand" : brand,
                      "model" : model,
                      "d_model" : d_model,
