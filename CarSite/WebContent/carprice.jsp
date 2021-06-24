@@ -16,7 +16,7 @@
  <%
  		request.setCharacterEncoding("UTF-8");
  		ArrayList<JoinDTO> info = (ArrayList<JoinDTO>)session.getAttribute("carinfo1");
- 		//ArrayList<carinfoDTO> carinfo = (ArrayList<carinfoDTO>)session.getAttribute("carinfo");
+ 		carinfoDTO carinfo = (carinfoDTO)session.getAttribute("caryear");
  		String car_num;
  		String brand;
  		String model;
@@ -40,7 +40,7 @@
  			year = info.get(0).getYear();
  			
  			pricePre = (String)session.getAttribute("pricepre");  			
- 			total = brand+" "+model+" "+d_model+" "+grade+" "+year+" 년식 : "+pricePre+" 만원";
+ 			total = brand+" "+model+" "+d_model+" "+grade+" "+carinfo.getYear()+" 년식 : "+pricePre+" 만원";
  		}else{
  			total = "차량을 선택해주세요";
  		}
@@ -87,6 +87,8 @@
                      <select name="d_model" id="d_model" onchange="changes('g')">세부모델
                         <option value="">-세부모델-</option>
                      </select>
+                     <span style="color:#222222">&nbsp;&nbsp;&nbsp;&nbsp;</span>
+                     <input type="button" value="검색하기" calss="small_btn" onclick="serch_car()">
                      
                      <select name="grade" id="grade" onchange="changes('y')">등급
                         <option value="">-등급-</option>
@@ -106,20 +108,21 @@
                         
                      </select>
                      
-                     <input type="button" value="검색하기" calss="small_btn" onclick="serch_car()">
+                     <span style="color:#222222">&nbsp;&nbsp;&nbsp;&nbsp;</span>
                      <input type="submit" value="예측하기" calss="small_btn" >
                      <hr>
-                     <input type = "text" name ="car_type" id="car_type" value="e">
-                     <input type = "text" name ="gear" id="gear" value="e">
-                     <input type = "text" name ="fuel" id="fuel" value="e">
-                     <input type = "text" name ="fe" id="fe" value="e">
-                     <input type = "text" name ="cc" id="cc" value="e">
-                     <input type = "text" name ="output" id="output" value="e">
-                     <input type = "text" name ="torque" id="torque" value="e">
-                     <input type = "text" name ="drivesys" id="drivesys" value="e">
-                     <input type = "text" name ="people" id="people" value="e">
-                     <input type = "text" name ="wheel" id="wheel" value="e">
-                     <input type = "text" name ="tire" id="tire" value="e">
+                     <!-- padding: 1em 6em 1em 1em 변경하기 -->
+                     <input type = "text" name ="car_type" id="car_type" value="e" style="visibility: hidden;width: 0.9%">
+                     <input type = "text" name ="gear" id="gear" value="e" style="visibility: hidden;width: 0.9%">
+                     <input type = "text" name ="fuel" id="fuel" value="e" style="visibility: hidden;width: 0.9%">
+                     <input type = "text" name ="fe" id="fe" value="e" style="visibility: hidden;width: 0.9%">
+                     <input type = "text" name ="cc" id="cc" value="e" style="visibility: hidden;width: 0.9%">
+                     <input type = "text" name ="output" id="output" value="e" style="visibility: hidden;width: 0.9%">
+                     <input type = "text" name ="torque" id="torque" value="e" style="visibility: hidden;width: 0.9%">
+                     <input type = "text" name ="drivesys" id="drivesys" value="e" style="visibility: hidden;width: 0.9%">
+                     <input type = "text" name ="people" id="people" value="e" style="visibility: hidden;width: 0.9%">
+                     <input type = "text" name ="wheel" id="wheel" value="e" style="visibility: hidden;width: 0.9%">
+                     <input type = "text" name ="tire" id="tire" value="e" style="visibility: hidden;width: 0.9%">
                      
                      
                      </form>
@@ -150,16 +153,18 @@
             	 		%>	
             	 		<tr>
             	 			<td><%=name %> </td>
-            	 			<td><%=price %> 허위 매물 주의!!<td>
+            	 			<td><%=price %></td>
                				<td><a href="<%=url %>"><%=site %></a></td>
+               				<td><div style="color:white;background-color: red;text-align:center;">※주의※</div></td>
                				
                			</tr>
             	 			
             	 		<%		}else{ %>
             	 		<tr>
             	 			<td><%=name %></td>
-            	 			<td><%=price %><td>
+            	 			<td><%=price %></td>
                				<td><a href="<%=url %>"><%=site %></a></td>
+               				<td></td>
                				
                			</tr>
             	 			

@@ -43,14 +43,10 @@ public class pricePre extends HttpServlet {
 		GoodsDAO goodsDAO = new GoodsDAO();
 		
 		ArrayList<JoinDTO> carinfo = goodsDAO.select_all3(car_num);
-//		carinfoDTO dto1 = new carinfoDTO(brand, model, d_model, grade, year);
-//		carDAO dao1 = new carDAO();
-//		System.out.println(11);
-//		carinfoDTO carinfo1 = dao.select_all(dto1);
 		
 		if (carinfo != null) {
 			session.setAttribute("carinfo1", carinfo);
-//			session.setAttribute("carinfo", carinfo1);
+			session.setAttribute("caryear", dto);
 			session.setAttribute("pricepre", pre);
 			response.sendRedirect("carprice.jsp");
 		}else {
