@@ -304,6 +304,63 @@ public class carDAO {
 	         close();
 	      }
 	      return goods_list;
+	      
 	   } 
+   
+   public carinfoDTO select_carinfo(String car_num) {
+	      carinfoDTO infodto = null ;
+	      
+	      getConnection();      
+	      try {      
+	         String sql = "SELECT * FROM car_info where car_num=?";
+	         psmt = conn.prepareStatement(sql);
+	         psmt.setString(1, car_num);
+
+	         rs = psmt.executeQuery();
+	         
+	         
+	      if(rs.next()){
+	    	  String brand = rs.getString(2);
+	    	  String model = rs.getString(3);
+	    	  String d_model = rs.getString(4);
+	    	  String grade = rs.getString(5);
+	    	  String year = rs.getString(6);
+	    	  String url = rs.getNString(19);
+	    	  infodto = new carinfoDTO(car_num, brand, model, d_model, grade, year, url);
+	         }
+	         System.out.println(infodto.getUrl());
+	         
+	      }catch (SQLException e) {
+	         e.printStackTrace();
+	      }finally{
+	         close();
+	      }
+	      return infodto;
+	   } 
+public String select_price(String car_num) {
+	   String price = null ;
+	      
+	      getConnection();      
+	      try {      
+	         String sql = "SELECT CARPRICE FROM car_info where car_num=?";
+	         psmt = conn.prepareStatement(sql);
+	         psmt.setString(1, car_num);
+
+	         rs = psmt.executeQuery();
+	         
+	         
+	      if(rs.next()){
+	    	   price = rs.getString(1);
+	    	  
+	         }
+	         
+	      }catch (SQLException e) {
+	         e.printStackTrace();
+	      }finally{
+	         close();
+	      }
+	      return price;
+	   } 
+   
    
 }

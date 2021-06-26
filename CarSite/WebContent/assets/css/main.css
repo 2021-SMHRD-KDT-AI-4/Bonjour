@@ -19,7 +19,7 @@ tfoot, thead, tr, th, td, article, aside,
 canvas, details, embed, figure, figcaption,
 footer, header, hgroup, menu, nav, output, ruby,
 section, summary, time, mark, audio, video {
-	margin: 0;
+	margin: 0px 20px 0px 20px;
 	padding: 0;
 	border: 0;
 	font-size: 100%;
@@ -2397,7 +2397,7 @@ input, select, textarea {
 
 		select option {
 			color: #ffffff;
-			background: #312450;
+			background: #222222;
 		}
 
 		select:focus::-ms-value {
@@ -3251,7 +3251,7 @@ input, select, textarea {
 	}
 
 		.wrapper > .inner {
-			padding: 5em 5em 3em 5em ;
+			padding: -2em 8em -2em 8em ;
 			max-width: 100%;
 			width: 75em;
 		}
@@ -3259,7 +3259,7 @@ input, select, textarea {
 			@media screen and (max-width: 1680px) {
 
 				.wrapper > .inner {
-					padding: 6em 6em 6em 6em ;
+					padding: -2em 8em -2em 8em ;
 					margin-left: 100px;
 					margin-right: 100px;
 					
@@ -3278,7 +3278,7 @@ input, select, textarea {
 			@media screen and (max-width: 736px) {
 
 				.wrapper > .inner {
-					padding: 3em 3em 3em 3em ;
+					padding: -2em 3em -2em 3em ;
 				}
 
 			}

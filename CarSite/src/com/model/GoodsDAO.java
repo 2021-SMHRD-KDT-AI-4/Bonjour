@@ -9,9 +9,9 @@ import java.util.ArrayList;
 
 public class GoodsDAO {
 	 private Connection conn;
-	   private PreparedStatement psmt;
-	   private ResultSet rs;
-	   private int cnt;
+	 private PreparedStatement psmt;
+	 private ResultSet rs;
+	 private int cnt;
 	   
 	   carinfoDTO dto = null;
 	   
@@ -74,7 +74,7 @@ public class GoodsDAO {
 	            String url = rs.getString(13);
 	            joinDTO = new JoinDTO(num, brand, model, d_model, grade, goods_num, year, km, price, fuel, site, url);
 	            join_list.add(joinDTO);
-		         }
+		        }
 		         
 		         
 		      }catch (SQLException e) {
@@ -84,5 +84,88 @@ public class GoodsDAO {
 		      }
 		      return join_list;
 		   }
+	   
+	   public int insertGoods(GoodsDTO dto) {
+			int cnt = 0;
+			
+			getConnection();
+			
+			try {			
+				String sql = "insert into car_goods values((carsq_num.nextval)/2,?,?,?,?,?,?,?)";
+				psmt = conn.prepareStatement(sql);
+				
+				psmt.setString(1, dto.getCar_num());
+				psmt.setString(2, dto.getYear());
+				psmt.setString(3, dto.getKm());
+				psmt.setString(4, dto.getPrice());
+				psmt.setString(5, dto.getFuel());
+				psmt.setString(6, dto.getSite());
+				psmt.setString(7, dto.getUrl());
+				
+				cnt = psmt.executeUpdate();
+			}catch (SQLException e) {
+				e.printStackTrace();
+				
+			}finally {
+				close();		
+			}
+			
+			return cnt;
+			
+			
+			
+		}
+	   
+	   public String select_goodsNum(GoodsDTO dto) {
+		      String goods_num="";
+		      getConnection();      
+		      try {      
+		         String sql = "SELECT goods_num FROM car_goods WHERE car_num =? and goods_year =? and goods_km =? and goods_price=? and goods_fuel=?";
+		         psmt = conn.prepareStatement(sql);
+		         psmt.setString(1, dto.getCar_num());
+		         psmt.setString(2, dto.getYear());
+		         psmt.setString(3, dto.getKm());
+		         psmt.setString(4, dto.getPrice());
+		         psmt.setString(5, dto.getFuel());
+		         
+		         rs = psmt.executeQuery();
+		         
+		         
+		      if(rs.next()){
+		    	  goods_num = rs.getString(1);
+		        }
+		         
+		      }catch (SQLException e) {
+		         e.printStackTrace();
+		      }finally{
+		         close();
+		      }
+		      return goods_num;
+		   }
+	   
+	   public int update_good_num(GoodsDTO dto) {
+		      int cnt = 0;
+		      getConnection();      
+		      try {      
+		         String sql = "UPDATE car_goods SET GOODS_URL = ? WHERE car_num =? and goods_year =? and goods_km =? and goods_price =? and goods_fuel=?";
+		         psmt = conn.prepareStatement(sql);
+		         
+		         psmt.setString(1, dto.getUrl());
+		         psmt.setString(2, dto.getCar_num());
+		         psmt.setString(3, dto.getYear());
+		         psmt.setString(4, dto.getKm());
+		         psmt.setString(5, dto.getPrice());
+		         psmt.setString(6, dto.getFuel());
+		         
+		         cnt = psmt.executeUpdate();
+		         
+		         
+		      }catch (SQLException e) {
+		         e.printStackTrace();
+		      }finally{
+		         close();
+		      }
+		      return cnt;
+		   } 
 	   
 }

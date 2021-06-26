@@ -7,9 +7,8 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
-
-public class FavoriteDAO {
-	 private Connection conn;
+public class FavoriteGoodsDAO {
+	private Connection conn;
 	   private PreparedStatement psmt;
 	   private ResultSet rs;
 	   private int cnt;
@@ -47,18 +46,35 @@ public class FavoriteDAO {
 	         }
 	   }
 	   
-	   public  ArrayList<carinfoDTO> select_cars(String id) {
-		      ArrayList<carinfoDTO> car_list = new ArrayList<carinfoDTO>();
+	   //¼öÁ¤
+	   public  ArrayList<JoinDTO> select_goods(String id) {
+		      ArrayList<JoinDTO> join_list = new ArrayList<JoinDTO>();
+		      JoinDTO joinDTO = null;
 		      getConnection();      
 		      try {      
-		         String sql = "SELECT * FROM CAR_INFO WHERE car_num in (SELECT car_num FROM CAR_FAVORITE where id=?) ";
+		    	  
+		         String sql = "SELECT * FROM(SELECT car_num,brand,model,d_model,grade FROM CAR_INFO WHERE car_num in(SELECT car_num FROM CAR_GOODS WHERE goods_num in(SELECT goods_num FROM GOODS_FAVORITE where id=?))) T1 INNER JOIN (SELECT * FROM CAR_GOODS WHERE goods_num in(SELECT goods_num FROM GOODS_FAVORITE where id=?)) T2 ON (T1.car_num = T2.car_num)";
 		         psmt = conn.prepareStatement(sql);
 		         psmt.setString(1, id);
+		         psmt.setString(2, id);
 		         
 		         rs = psmt.executeQuery();
 		         
 		         while(rs.next()){
-		           car_list.add(new carinfoDTO(rs.getString(2), rs.getString(3), rs.getString(4), rs.getString(5), rs.getString(6)));
+		        	 String num = rs.getString(1);
+			            String brand = rs.getString(2);
+			            String model = rs.getString(3);
+			            String d_model = rs.getString(4);
+			            String grade = rs.getString(5);	          
+			            String goods_num = rs.getString(6);
+			            String year = rs.getString(8);
+			            String km = rs.getString(9);
+			            String price = rs.getString(10);
+			            String fuel = rs.getString(11);
+			            String site = rs.getString(12);
+			            String url = rs.getString(13);
+			            joinDTO = new JoinDTO(num, brand, model, d_model, grade, goods_num, year, km, price, fuel, site, url);
+			            join_list.add(joinDTO);
 		         }
 		         
 		         
@@ -67,17 +83,17 @@ public class FavoriteDAO {
 		      }finally{
 		         close();
 		      }
-		      return car_list;
+		      return join_list;
 		   }
-	   public Boolean select_car(String id , String car_num) {
-		   System.out.println("Âò°Ë»ö"+id +":"+car_num);
+	   public Boolean select_good(String id , String goods_num) {
+		   System.out.println("¸Å¹°Âò°Ë»ö"+id +":"+goods_num);
 		   Boolean ck = false;
 		   getConnection();      
 		      try {      
-		         String sql = "SELECT * FROM CAR_FAVORITE where id=? AND car_num = ?";
+		         String sql = "SELECT * FROM GOODS_FAVORITE where id=? AND goods_num = ?";
 		         psmt = conn.prepareStatement(sql);
 		         psmt.setString(1, id);
-		         psmt.setString(2, car_num);
+		         psmt.setString(2, goods_num);
 		         rs = psmt.executeQuery();
 		         
 	         if(rs.next()) {
@@ -96,13 +112,13 @@ public class FavoriteDAO {
 		      return ck;
 		   }
 	   
-	   public  int insert(FavoriteDTO dto) {
+	   public  int insert(FavoriteGoodsDTO dto) {
 		      getConnection();      
 		      try {      
-		         String sql = "INSERT INTO CAR_FAVORITE VALUES(?,?) ";
+		         String sql = "INSERT INTO GOODS_FAVORITE VALUES(?,?) ";
 		         psmt = conn.prepareStatement(sql);
 		         psmt.setString(1, dto.getId());
-		         psmt.setString(2, dto.getCar_num());
+		         psmt.setInt(2, dto.getGoods_num());
 		         
 		         cnt = psmt.executeUpdate();
 		         
@@ -115,13 +131,13 @@ public class FavoriteDAO {
 		      }
 		      return cnt;
 		   }
-	   public  int delete(FavoriteDTO dto) {
+	   public  int delete(FavoriteGoodsDTO dto) {
 		      getConnection();      
 		      try {      
-		         String sql = "DELETE FROM CAR_FAVORITE WHERE id=? AND car_num=? ";
+		         String sql = "DELETE FROM GOODS_FAVORITE WHERE id=? AND goods_num=? ";
 		         psmt = conn.prepareStatement(sql);
 		         psmt.setString(1, dto.getId());
-		         psmt.setString(2, dto.getCar_num());
+		         psmt.setInt(2, dto.getGoods_num());
 		         
 		         cnt = psmt.executeUpdate();
 		         
@@ -134,4 +150,5 @@ public class FavoriteDAO {
 		      }
 		      return cnt;
 		   }
+
 }

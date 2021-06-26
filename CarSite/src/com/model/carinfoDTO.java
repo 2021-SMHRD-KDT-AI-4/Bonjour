@@ -47,6 +47,24 @@ public carinfoDTO(String car_num, String brand, String model, String d_model, St
 	this.url = url;
 	this.cartype = cartype;
 }
+
+
+
+
+public carinfoDTO(String car_num, String brand, String model, String d_model, String grade, String year, String url) {
+	super();
+	this.car_num = car_num;
+	this.brand = brand;
+	this.model = model;
+	this.d_model = d_model;
+	this.grade = grade;
+	this.year = year;
+	this.url = url;
+}
+
+
+
+
 private String cartype;
    public carinfoDTO(String car_num, String brand, String model, String d_model, String grade, String year,
          String carprice, String fe, String cc, String maxoutput, String maxtorque, String drivesystem,

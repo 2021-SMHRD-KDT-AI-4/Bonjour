@@ -9,6 +9,7 @@ public class GoodsDTO {
 	private String fuel;
 	private String site;
 	private String url;
+	
 	public GoodsDTO(String good_num, String car_num, String year, String km, String price, String fuel, String site,
 			String url) {
 		super();
@@ -21,6 +22,29 @@ public class GoodsDTO {
 		this.site = site;
 		this.url = url;
 	}
+	
+	public GoodsDTO( String car_num, String year, String km, String price, String fuel, String site,
+			String url) {
+
+		this.car_num = car_num;
+		this.year = year;
+		this.km = km;
+		this.price = price;
+		this.fuel = fuel;
+		this.site = site;
+		this.url = url;
+	}
+	
+	
+	public GoodsDTO(String car_num, String year, String km, String price, String fuel) {
+		super();
+		this.car_num = car_num;
+		this.year = year;
+		this.km = km;
+		this.price = price;
+		this.fuel = fuel;
+	}
+
 	public String getGood_num() {
 		return good_num;
 	}

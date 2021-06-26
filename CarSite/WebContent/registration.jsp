@@ -1,9 +1,5 @@
-<%@page import="java.net.URLEncoder"%>
-<%@page import="com.model.FavoriteDAO"%>
 <%@page import="com.model.MemberDTO"%>
-<%@page import="com.model.MemberDAO"%>
 <%@page import="com.model.carinfoDTO"%>
-<%@page import="java.util.ArrayList"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -18,11 +14,22 @@
 </head>
 <body>
 <%
-               		request.setCharacterEncoding("UTF-8");
-               		carinfoDTO info = (carinfoDTO)session.getAttribute("carinfo");
-               		MemberDTO member = (MemberDTO)session.getAttribute("info"); 
-       
-               %>
+	request.setCharacterEncoding("UTF-8");
+	carinfoDTO carinfo = (carinfoDTO)session.getAttribute("car_info");
+	String[] numColor = (String[])session.getAttribute("numColor");
+	MemberDTO mdto = (MemberDTO)session.getAttribute("info");
+	String car_num;
+	String brand;
+	String model;
+	String d_model;
+	String grade;
+	String year;
+	String fuel;
+	String color;
+	String price;
+	String km;
+    String id = "";
+%>
               
 <!-- Header -->
          <header id="header">
@@ -35,9 +42,9 @@
          <!-- Main -->
                <section id="main" class="wrapper">
                   <div class="inner">
-                     <h1 class="major">차량 용어 설명</h1>
+                     <h1 class="major">차량 매물 등록</h1>
                      
-                     <form action="carDetailinfo" method="post" name="form">
+                     <form action="carRegistration" method="post" name="form">
                      
                      <select name="brand" id="brand" onchange="changes('m')">
                          <option value="">-제조사-</option>
@@ -65,100 +72,104 @@
                      <select name="year" id="year" onchange="changes()">연식
                         <option value="">-연식-</option>
                      </select>
-                   
-                     <input type="submit" value="검색" calss="small_btn">
+                     <select name="fuel" id="fuel" >연료
+                        <option value="">-연료-</option>
+                        <option value="가솔린">가솔린</option>
+                        <option value="디젤">디젤</option>
+                     </select>
+                     <select name="color" id="color" ">색상
+                        <option value="">-색상-</option>
+                        <option value="흰색">흰색</option>
+                        <option value="검정색">검정색</option>
+                        <option value="회색">회색</option>
+                        <option value="은색">은색</option>
+                        <option value="진주색">진주색</option>
+                        <option value="기타">기타</option>
+                        
+                     </select>
+                     <input type="text" name="price" placeholder="차량가격입력 (만원)">
+                   	 <input type="text" name="km" placeholder="주행거리입력 (Km)">
+                     <input type="submit" value="등록" calss="small_btn">
+                     
+                     <input type="text" name="car_id" placeholder="차량번호입력 ">
+                     <select name="smartkey">스마트키
+                        <option value="">-스마트키 유/무-</option>
+                        <option value="있음">있음</option>
+                        <option value="없음">없음</option>
+                     </select>
+                     <select name="sunroof">썬루프
+                        <option value="">-썬루프 유/무-</option>
+                        <option value="있음">있음</option>
+                        <option value="없음">없음</option>
+                     </select>
+                     <select name="navi" >네비게이션
+                        <option value="">-네비게이션 유/무-</option>
+                        <option value="있음">있음</option>
+                        <option value="없음">없음</option>
+                     </select>
+                     <% if (mdto != null) { 
+                     	id = mdto.getId();
+                     }%>
+                     
+                     <input type="text" name="insurance" placeholder="보험이력입력 ">
+                     <input type = "text" name ="id" value="<%= id %>" style="visibility: hidden;width: 0.9%">
+                     
+                     
                      
                      </form>
-                       <% 
-                     FavoriteDAO favoriteDAO = new FavoriteDAO();
-                     boolean ck = false;
-                     if(member != null & info != null){
-             		ck =favoriteDAO.select_car(member.getId(),info.getCar_num());
-                     }
-             		if(ck == true){
-             			%>
-             			<input type="button" value="찜하기해제" id="fav" onclick="favorite()">
-         				<%
-             		} else{
-             			%>
-             			<input type="button" value="찜하기" id="fav" onclick="favorite()">
-         				<%
-             		}
-                     %>
+ 
                   </div>
                
                </section>
                
                <section class="wrapper style1 fade-up">
-               
-               <div class="inner">
-               <% if(info != null){ %>
-               	<img alt="제공되지 않는 이미지입니다." src="images/Car_img/<%= info.getUrl() %>">
-               	<table>
-               		<tr>
-               			<td>연료 : <%=info.getFe() %></td>
-               			<td>배기량 : <%=info.getCc() %></td>
-               			<td>최대 출력 : <%=info.getMaxoutput() %></td>
-               			<td>최대 토크 : <%=info.getMaxtorque() %></td>
-               		</tr>
-               		<tr>
-          
-               			<td>구동방식 : <%=info.getDrivesystem() %></td>
-               			<td>승차인원 : <%=info.getPeople() %></td>
-               			<td>휠 : <%=info.getWheel() %></td>
-               			<td>타이어 : <%=info.getTire() %></td>	               			
-               		</tr>
-               		
-               	</table>
-               <% }else { %>
-               		<section>
-							<h1>차량 정보를 선택해 주세요</h1>
-					</section>
-               <% } %>
-               
-               </div>
-               </section>
-               
-               <section class="wrapper style1 fade-up">
-               	 <div class="features">
-               		
-						<section >
-							<h3>배기량</h3>
-							<p>엔진 실런더 내부의 피스톤이 왕복하는 구간의 총 용량(엔진의 크기)</p>
-						</section>
-						<section>
-							<h3>최고출력</h3>
-							<p>엔진이 낼 수 있는 최대 에너지의 양</p>
-						</section>
-						<section>
-							<h3>최대토크 </h3>
-							<p>엔진의 폭발 과정에서 크랭크 축에 발생하는 회전력</p>
-						</section>
-						<section>
-							<h3>복합 연비 </h3>
-							<p>도심연비와 고속도로주행 연비에 각각 55%, 45%의 가중치를 적용해 산출된 연비로, 복합연비를 기준으로 자동차의 연비등급을 부여합니다. </p>
-						</section>
-						<section>
-							<h3>FF (Front engine - Front wheel drive)</h3>
-							<p>엔진과 동력전달장치가 차량 앞에 장착되어 있습니다.</p>
-						</section>
-						<section>
-							<h3>FR (Front engine - Rear wheel drive)</h3>
-							<p>엔진은 차량 앞에 장착되고, 후륜이 구동되는 방식을 말합니다.</p>
-						</section>
-						<section>
-							<h3>RR (Rear engine - Rear wheel drive)</h3>
-							<p>엔진이 차량 뒤쪽에 배치되고, 후륜이 구동되는 방식입니다.</p>
-						</section>
-						<section>
-							<h3>MR (Mid engine - Rear wheel drive)</h3>
-							<p>엔진이 차량 가운데 배치되고, 후륜이 구동되는 방식입니다</p>
-						</section>
+               	<div class= "inner">
+					<table>
+						<tr>
+               				<td> 제조사 </td>
+               				<td> 모델 </td>
+               				<td> 색상 </td>
+               				<td> 연식 </td>
+               				<td> 연료 </td>
+               				<td> 주행거리 </td>
+               				<td> 가격 </td>               			
+               			</tr>
+					<%
+					//String model
+					
+					
+					if (carinfo != null) {
+						brand = carinfo.getBrand();
+						model = carinfo.getModel();
+						d_model = carinfo.getD_model();
+						grade = carinfo.getGrade();
+						year = carinfo.getYear();
+						car_num = numColor[0];
+						color = numColor[1];
+						price = numColor[2];
+						km = numColor[3];
+						fuel = numColor[4];
 						
-						               		
+					
+					%>
+               			<tr>
+               				<td><%= brand%></td>
+               				<td><%= model%>&nbsp;<%= d_model%>&nbsp;<%= grade%></td>
+               				<td><%= color %> </td>
+               				<td><%= year %> </td>
+               				<td><%= fuel %> </td>
+               				<td><%= km %> </td>
+               				<td><%= price %> </td>               			
+               			</tr>
+               			
+               			
+               		<%} %>
                		
-               	  </div>
+               		</table>
+               	</div>
+
                </section>
+
                
            </div>
 
@@ -255,57 +266,7 @@
           }
 
                 
-         		function favorite() {
-         			var id =null;
-         			var car_num = null;
-                    <%
-               		request.setCharacterEncoding("UTF-8");
-               		carinfoDTO carinfo1 = (carinfoDTO)session.getAttribute("carinfo");
-               		MemberDTO member1 = (MemberDTO)session.getAttribute("info");
-               		
-               %>
-	               <% if(carinfo1 != null){%>
-	     			car_num =<%= carinfo1.getCar_num()  %>;
-	
-	          		<%} %>
-               		<% if(member1 != null){%>
-               		id =<%= member.getId()  %>;
-	
-               		<%} %>
-          			if($('#fav').val()=="찜하기"){
-          				$.ajax({
-          					type : "post",
-          					data : {
-          						"car_num" : car_num,
-          						"id" : id
-          					},
-          					url : "favoriteService",
-          					dataType : "text",
-          					success : function(data){
-          						$('#fav').val(data)
-          					},
-          					error : function(){
-          						alert("실패!");
-          					}
-          				})
-    			} else if($('#fav').val()=="찜하기해제"){
-    				$.ajax({
-      					type : "post",
-      					data : {
-      						"car_num" : car_num,
-      						"id" : id
-      					},
-      					url : "disFavoriteService",
-      					dataType : "text",
-      					success : function(data){
-      						$('#fav').val(data)
-      					},
-      					error : function(){
-      						alert("실패!");
-      					}
-      				})
-    			}
-          		}
+         	
          
    </script>
          

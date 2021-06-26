@@ -120,7 +120,7 @@
 									<h2>My page</h2>
 									<p>Phasellus convallis elit id ullamcorper pulvinar. Duis aliquam turpis mauris, eu ultricies erat malesuada quis. Aliquam dapibus.</p>
 									<ul class="actions">
-										<li><a href="cardetail.jsp" class="button">My page</a></li>
+										<li><a href="myPage.jsp" class="button">My page</a></li>
 									</ul>
 								</div>
 							</div>
