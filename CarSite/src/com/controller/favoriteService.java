@@ -28,9 +28,10 @@ public class favoriteService extends HttpServlet {
 		response.setCharacterEncoding("UTF-8");
 		String car_num= request.getParameter("car_num");
 		String id=request.getParameter("id");
-		System.out.println(id +" : "+car_num);
+		System.out.println("sefsef"+id +" : "+car_num);
 		FavoriteDTO dto = new FavoriteDTO(id, car_num);
 		FavoriteDAO dao = new FavoriteDAO();
+		System.out.println("1111111");
 		int cnt=dao.insert(dto);
 		PrintWriter out = response.getWriter();
 		if(cnt>0) {

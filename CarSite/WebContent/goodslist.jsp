@@ -37,40 +37,39 @@
 %>
 
 	<section class="wrapper">
-		<div class="inner">
+		<div id="detail_info">
+		<h3 style="color:white;"><a href="testmain.jsp">Bonjour</a></h3>
+			<h1 style="color:white;"> 상세 정보</h1>
+			<h1 class="major"></h1>
 			<table>
 				<tr>
-					<td colspan="2">상세정보</td>
+					<td align="center">등록자 ID : </td>
+					<td align="center"><%= dto.getId()%></td>
 					
 				</tr>
 				<tr>
-					<td>등록자 ID : </td>
-					<td><%= dto.getId()%></td>
+					<td align="center">차량 번호 : </td>
+					<td align="center"><%= dto.getCar_id()%></td>
 					
 				</tr>
 				<tr>
-					<td>차량 번호 : </td>
-					<td><%= dto.getCar_id()%></td>
+					<td align="center"> 스마트키 :</td>
+					<td align="center"><%= dto.getSmartkey() %></td>
 					
 				</tr>
 				<tr>
-					<td> 스마트키 :</td>
-					<td><%= dto.getSmartkey() %></td>
+					<td align="center"> 썬루프 : </td>
+					<td align="center"><%= dto.getSunroof() %></td>
 					
 				</tr>
 				<tr>
-					<td> 썬루프 : </td>
-					<td><%= dto.getSunroof() %></td>
+					<td align="center"> 네이게이션 : </td>
+					<td align="center"><%= dto.getNavi()%></td>
 					
 				</tr>
 				<tr>
-					<td> 네이게이션 : </td>
-					<td><%= dto.getNavi()%></td>
-					
-				</tr>
-				<tr>
-					<td> 보험이력 : </td>
-					<td><%= dto.getInsurance() %></td>
+					<td align="center"> 보험이력 : </td>
+					<td align="center"><%= dto.getInsurance() %></td>
 					
 				</tr>
 

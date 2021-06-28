@@ -11,6 +11,17 @@
       <link rel="stylesheet" href="assets/css/main.css" />
       <noscript><link rel="stylesheet" href="assets/css/noscript.css" /></noscript>
 
+<style>
+	 @import url('https://fonts.googleapis.com/css2?family=Noto+Serif+KR&display=swap');
+
+	*{
+		font-family: 'Noto Serif KR', serif !important;
+	}
+	
+	
+
+</style>
+
 </head>
 <body>
 <%
@@ -89,6 +100,7 @@
                      </select>
                      <input type="text" name="price" placeholder="차량가격입력 (만원)">
                    	 <input type="text" name="km" placeholder="주행거리입력 (Km)">
+                   	 <input type="text" style="width: 100px;visibility: hidden">
                      <input type="submit" value="등록" calss="small_btn">
                      
                      <input type="text" name="car_id" placeholder="차량번호입력 ">
@@ -115,7 +127,7 @@
                      <input type = "text" name ="id" value="<%= id %>" style="visibility: hidden;width: 0.9%">
                      
                      
-                     
+                     <h1 class="major"></h1>
                      </form>
  
                   </div>

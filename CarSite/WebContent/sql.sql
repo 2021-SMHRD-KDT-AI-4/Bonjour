@@ -62,7 +62,7 @@ INSERT INTO CAR_INFO2 VALUES('5','기아','뉴모닝','SLX','고급형','2008','https://
 
 create sequence carsq_num start with 2000 increment by 1;
 
-alter table GOODS_INFO MODIFY GOODS_NUM number;
+alter table GOODS_INFO MODIFY GOODS_NUM varchar2(500);
 
 INSERT INTO GOODS_INFO VALUES((carsq_num.nextval)/2,'1','12허1242','있음','없음','있음','2회');
 

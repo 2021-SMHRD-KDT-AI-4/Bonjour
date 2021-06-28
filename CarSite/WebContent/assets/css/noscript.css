@@ -1,43 +1,31 @@
-/*
-	Hyperspace by HTML5 UP
-	html5up.net | @ajlkn
-	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
-*/
-
-/* Spotlights */
-
-	.spotlights > section > .image:before {
-		opacity: 0 !important;
-	}
-
-	.spotlights > section > .content > .inner {
-		-moz-transform: none !important;
-		-webkit-transform: none !important;
-		-ms-transform: none !important;
-		transform: none !important;
-		opacity: 1 !important;
-	}
-
-/* Wrapper */
-
-	.wrapper > .inner {
-		opacity: 1 !important;
-		-moz-transform: none !important;
-		-webkit-transform: none !important;
-		-ms-transform: none !important;
-		transform: none !important;
-	}
-
-/* Sidebar */
-
-	#sidebar > .inner {
-		opacity: 1 !important;
-	}
-
-	#sidebar nav > ul > li {
-		-moz-transform: none !important;
-		-webkit-transform: none !important;
-		-ms-transform: none !important;
-		transform: none !important;
-		opacity: 1 !important;
-	}
+<section id="cardetail">
+						<div class="cardinfo">
+							<p class="dinfop">배기량 <br> 엔진 실런더 내부의 피스톤이 왕복하는 구간의 총 용량(엔진의 크기)</p>
+						</div>
+						<div class="cardinfo">
+							<p class="dinfop">최고출력 <br> 엔진이 낼 수 있는 최대 에너지의 양</p>
+						</div>
+						
+						<div class="cardinfo">
+							<p class="dinfop">최대토크 <br> 엔진의 폭발 과정에서 크랭크 축에 발생하는 회전력</p>
+						</div>
+							
+						<div class="cardinfo">
+							<p class="dinfop">복합연비 <br> 도심연비와 고속도로주행 연비에 각각 55%, 45%의 가중치를 적용해 산출된 연비로, 복합연비를 기준으로 자동차의 연비등급을 부여합니다.</p>
+						</div>
+						
+						<div class="cardinfo">
+							<p class="dinfop">FF (Front engine - Front wheel drive) <br> 엔진과 동력전달장치가 차량 앞에 장착되어 있습니다.</p>
+						</div>
+						
+						<div class="cardinfo">
+							<p class="dinfop">FR (Front engine - Rear wheel drive)<br> 엔진은 차량 앞에 장착되고, 후륜이 구동되는 방식을 말합니다.</p>
+						</div>
+						<div class="cardinfo">
+							<p class="dinfop">RR (Rear engine - Rear wheel drive) <br> 엔진이 차량 뒤쪽에 배치되고, 후륜이 구동되는 방식입니다.</p>
+						</div>
+						
+						<div class="cardinfo">
+							<p class="dinfop">MR (Mid engine - Rear wheel drive)<br> 엔진이 차량 가운데 배치되고, 후륜이 구동되는 방식입니다</p>
+						</div>
+               </section>

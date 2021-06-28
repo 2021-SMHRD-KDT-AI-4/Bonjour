@@ -8,6 +8,18 @@
 <!DOCTYPE html>
 <html>
 <head>
+
+<style>
+	 @import url('https://fonts.googleapis.com/css2?family=Noto+Serif+KR&display=swap');
+
+	*{
+		font-family: 'Noto Serif KR', serif !important;
+	}
+	
+	
+
+</style>
+
 <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.bundle.min.js"></script>
 	<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.min.js"></script>
 <meta charset="utf-8" />
@@ -58,10 +70,11 @@
 				for(int i=0; i<cookies.length;i++){
 					if(cookies[i].getName().length()>6){
 					if(cookies[i].getName().subSequence(0, 7).equals("car_num")){
-						carinfoDTO dto= dao.select_carinfo(cookies[i].getValue()); %>
+						carinfoDTO dto= dao.select_carinfo(cookies[i].getValue()); 
+						if(dto != null){%>
 					 	<img class=back width="80px" height="50px" alt="<%= dto.getUrl() %>" src= "images/Car_img/<%= dto.getUrl() %>" >
 						<div style="color: black;"> <%= dto.getBrand()+"\n"+dto.getModel()+"\n"+dto.getD_model()+"\n"+dto.getGrade() %>  </div>
-				<% 	}
+				<% 	}}
 					}
 				}
 			}
@@ -347,7 +360,7 @@
 		            	 			
 		            	 			Integer.parseInt(pricePre);
 		            	 			
-		            	 			if(price < Integer.parseInt(pricePre)*0.5 || price > Integer.parseInt(pricePre)*1.5){
+		            	 			if(price < Integer.parseInt(pricePre)*0.5 ){
 	            	 		%>	
 	            	 		<tr style="background-color: #222222">
 	            	 			<td><%=name %> </td>
@@ -373,13 +386,13 @@
 	               			}
                			}else{ %>
 
-	               		<tr>
+	               		<!-- <tr>
 	               			<td>모델명</td>
 	               			<td>가격</td>
 	               			<td>&nbsp;&nbsp;&nbsp;사이트</td>
 	               			<td align="center">알림</td>
 	               			<td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;찜</td>
-	               		</tr>
+	               		</tr> -->
 								
                			<% } %>
                		
@@ -526,6 +539,7 @@
                   var d_model = $("#d_model").val();
                   var grade = $("#grade").val();
                   var year = $("#year").val();
+                  $("#preprice").text("차량검색완료");
          
                   $.ajax({
                       type : "POST",  // 데이터 전송 방식
@@ -572,7 +586,7 @@
              		MemberDTO member1 = (MemberDTO)session.getAttribute("info");
              		%>
              		<% if(member1 != null){%>
-             		id =<%= member1.getId()  %>;
+             		id ="<%= member1.getId()  %>";
              		<%} %>
             		if($("#"+v).val()=="찜하기"){
             			$.ajax({

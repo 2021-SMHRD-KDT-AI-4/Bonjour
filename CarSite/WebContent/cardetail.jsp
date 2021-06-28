@@ -15,6 +15,15 @@
       <link rel="stylesheet" href="assets/css/main.css" />
       <noscript><link rel="stylesheet" href="assets/css/noscript.css" /></noscript>
 
+<style>
+	 @import url('https://fonts.googleapis.com/css2?family=Noto+Serif+KR&display=swap');
+
+	*{
+		font-family: 'Noto Serif KR', serif !important;
+	}
+	
+</style>
+
 </head>
 <body>
 <%
@@ -35,7 +44,7 @@
          <!-- Main -->
                <section id="main" class="wrapper">
                   <div class="inner">
-                     <h1 class="major">차량 용어 설명</h1>
+                     <h1 class="major">차량 정보</h1>
                      
                      <form action="carDetailinfo" method="post" name="form">
                      
@@ -57,6 +66,7 @@
                      <select name="d_model" id="d_model" onchange="changes('g')">세부모델
                         <option value="">-세부모델-</option>
                      </select>
+                     <input style="width: 3%;visibility: hidden"><input type="submit" value="검색" calss="small_btn">
                      
                      <select name="grade" id="grade" onchange="changes('y')">등급
                         <option value="">-등급-</option>
@@ -65,11 +75,19 @@
                      <select name="year" id="year" onchange="changes()">연식
                         <option value="">-연식-</option>
                      </select>
-                   
-                     <input type="submit" value="검색" calss="small_btn">
                      
                      </form>
-                       <% 
+                       
+                  </div>
+               
+               </section>
+               
+               <section class="wrapper style1 fade-up">
+               
+               <div class="inner">
+               <% if(info != null){ %>
+               	<img alt="제공되지 않는 이미지입니다." src="images/Car_img/<%= info.getUrl() %>">
+               	<% 
                      FavoriteDAO favoriteDAO = new FavoriteDAO();
                      boolean ck = false;
                      if(member != null & info != null){
@@ -85,18 +103,10 @@
          				<%
              		}
                      %>
-                  </div>
-               
-               </section>
-               
-               <section class="wrapper style1 fade-up">
-               
-               <div class="inner">
-               <% if(info != null){ %>
-               	<img alt="제공되지 않는 이미지입니다." src="images/Car_img/<%= info.getUrl() %>">
+               	<h1 class="major"> </h1>
                	<table>
                		<tr>
-               			<td>연료 : <%=info.getFe() %></td>
+               			<td>연비 : <%=info.getFe() %></td>
                			<td>배기량 : <%=info.getCc() %></td>
                			<td>최대 출력 : <%=info.getMaxoutput() %></td>
                			<td>최대 토크 : <%=info.getMaxtorque() %></td>
@@ -112,14 +122,15 @@
                	</table>
                <% }else { %>
                		<section>
-							<h1>차량 정보를 선택해 주세요</h1>
+							<h1 style="color:white;">차량 정보를 선택해 주세요</h1>
 					</section>
                <% } %>
-               
+               <h1 class="major"> </h1>
                </div>
+               
                </section>
                
-               <section class="wrapper style1 fade-up">
+                <section class="wrapper style1 fade-up">
                	 <div class="features">
                		
 						<section >
@@ -154,8 +165,6 @@
 							<h3>MR (Mid engine - Rear wheel drive)</h3>
 							<p>엔진이 차량 가운데 배치되고, 후륜이 구동되는 방식입니다</p>
 						</section>
-						
-						               		
                		
                	  </div>
                </section>
@@ -269,8 +278,7 @@
 	
 	          		<%} %>
                		<% if(member1 != null){%>
-               		id =<%= member.getId()  %>;
-	
+               		id ="<%= member1.getId()  %>";
                		<%} %>
           			if($('#fav').val()=="찜하기"){
           				$.ajax({
