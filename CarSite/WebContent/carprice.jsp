@@ -114,7 +114,6 @@
 	              d_model = info.get(0).getD_model();
 	              grade = info.get(0).getGrade();
 	              year = info.get(0).getYear();
-	              
 	              //pricePre = (String)session.getAttribute("pricepre");           
 	              total = brand+" "+model+" "+d_model+" "+grade+" "+carinfo.getYear()+" 년식 : "+pricePre+" 만원";
 	           }
@@ -193,6 +192,7 @@
                      <input type = "text" name ="car_type" id="car_type" value="e" style="visibility: hidden;width: 0.9%">
                      <input type = "text" name ="gear" id="gear" value="e" style="visibility: hidden;width: 0.9%">
                      <input type = "text" name ="fuel" id="fuel" value="e" style="visibility: hidden;width: 0.9%">
+                     <input type = "text" name ="car_price" id="car_price" value="e" style="visibility: hidden;width: 0.9%">
                      <input type = "text" name ="fe" id="fe" value="e" style="visibility: hidden;width: 0.9%">
                      <input type = "text" name ="cc" id="cc" value="e" style="visibility: hidden;width: 0.9%">
                      <input type = "text" name ="output" id="output" value="e" style="visibility: hidden;width: 0.9%">
@@ -559,7 +559,7 @@
                     	  $("#car_type").val(data.car_type[0].value);
                     	  $("#gear").val(data.gear[0].value);
                     	  $("#fuel").val(data.fuel[0].value);
-                    	  
+                    	  $("#car_price").val(data.car_price[0].value);
                     	  $("#fe").val(data.fe[0].value);
                     	  $("#cc").val(data.cc[0].value);
                     	  $("#output").val(data.output[0].value);

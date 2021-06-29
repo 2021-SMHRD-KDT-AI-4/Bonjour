@@ -51,7 +51,8 @@ public class getModel2 extends HttpServlet {
          result.append("{\"value\" : \""+dto2.getGear()+"\"}],");
          result.append("\"fuel\":[");
          result.append("{\"value\" : \""+dto2.getFuel()+"\"}],");
-         
+         result.append("\"car_price\":[");
+         result.append("{\"value\" : \""+dto2.getCarprice()+"\"}],");
          result.append("\"fe\":[");
          result.append("{\"value\" : \""+dto2.getFe()+"\"}],");
          result.append("\"cc\":[");
